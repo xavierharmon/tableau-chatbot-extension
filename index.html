@@ -381,6 +381,17 @@ function handleFile(file) {
   else reader.readAsArrayBuffer(file);
 }
 
+//-- Sanitize Strings for safe jSON embedding ----------------------------
+function sanitize(val) {
+    return String(val)
+        .substring(0,60)
+        .replace(/\\/g, '')
+        .replace(/"/g, "'")
+        .replace(/[\r\n\t]/g, ' ')
+        .replace(/[^\x20-\x7E]/g, '')
+        .trim();
+}
+
 // ── Build Data Context for Claude ───────────────────────────────────────────
 function buildDataContext(rows, cols, fileName, sheetName) {
   const totalRows = rows.length;
@@ -395,11 +406,11 @@ function buildDataContext(rows, cols, fileName, sheetName) {
       const sum = ns.reduce((a,b)=>a+b,0);
       const min = Math.min(...ns); const max = Math.max(...ns);
       const avg = (sum/ns.length).toFixed(2);
-      return `${col} [numeric]: min=${min}, max=${max}, avg=${avg}, sum=${sum.toFixed(2)}, count=${ns.length}`;
+      return `${sanitize(col)} [numeric]: min=${min}, max=${max}, avg=${avg}, sum=${sum.toFixed(2)}, count=${ns.length}`;
     } else {
       const unique = [...new Set(vals)];
       const preview = unique.slice(0,8).map(v=>String(v).substring(0,30)).join(', ');
-      return `${col} [text]: ${unique.length} unique values — e.g. ${preview}${unique.length>8?'…':''}`;
+      return `${sanitize(col)} [text]: ${unique.length} unique values — e.g. ${preview}${unique.length>8?'…':''}`;
     }
   });
 
@@ -408,9 +419,13 @@ function buildDataContext(rows, cols, fileName, sheetName) {
     ? rows
     : [...rows.slice(0,20), ...rows.slice(-5)];
   const sampleCsv = [
-    cols.join(' | '),
-    ...sampleRows.map(r => cols.map(c => String(r[c]).substring(0,40)).join(' | '))
+    cols.map(sanitize).join(' | '),
+    ...sampleRows.map(r => cols.map(c => sanitize(r[c]).substring(0,40)).join(' | '))
   ].join('\n');
+
+  const safeFile = sanitize(fileName);
+  const safeSheet = sanitize(sheetName);
+
 
   return `
 FILE: ${fileName} (Sheet: "${sheetName}")
