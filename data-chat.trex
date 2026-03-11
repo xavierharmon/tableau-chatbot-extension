@@ -25,7 +25,7 @@
           3. Replace YOUR_USERNAME and YOUR_REPO below
           4. Wait ~60 seconds for GitHub to deploy, then reload
       -->
-      <url>https://xavierharmon.github.io/tableau-chatbot-extension/index.html</url>
+      <!-- <url>https://xavierharmon.github.io/tableau-chatbot-extension/index.html</url> -->
 
       <!--
         STEP 3 — TABLEAU SERVER (production):
