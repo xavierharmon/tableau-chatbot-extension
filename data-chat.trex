@@ -16,7 +16,7 @@
           Uncomment the line below and run: npx serve . OR python -m http.server 8765
           Then load this .trex file from Tableau Desktop.
       -->
-      <!-- <url>http://localhost:8765/index.html</url> -->
+      <url>http://localhost:8765/index.html</url> 
 
       <!--
         STEP 2 — GITHUB PAGES (free HTTPS hosting):
@@ -25,7 +25,7 @@
           3. Replace YOUR_USERNAME and YOUR_REPO below
           4. Wait ~60 seconds for GitHub to deploy, then reload
       -->
-      <url>https://YOUR_USERNAME.github.io/YOUR_REPO/index.html</url>
+      <url>https://xavierharmon.github.io/tableau-chatbot-extension/index.html</url>
 
       <!--
         STEP 3 — TABLEAU SERVER (production):
