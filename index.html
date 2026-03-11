@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Data Chat — Tableau Extension</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- SheetJS for Excel parsing -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<!-- Tableau Extensions API -->
+<script src="https://cdn.jsdelivr.net/npm/@tableau/extensions-api@1.12.0/dist/tableau.extensions.1.latest.min.js"></script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:    #f5f0e8;
+  --paper:    #faf7f2;
+  --ink:      #1a1612;
+  --ink2:     #3d3530;
+  --muted:    #8c7e72;
+  --rule:     #e0d8cc;
+  --amber:    #c8600a;
+  --amber-lt: #fdf0e6;
+  --green:    #1a6641;
+  --green-lt: #e8f4ee;
+  --red:      #9b2020;
+  --red-lt:   #fdf0f0;
+  --shadow:   0 2px 12px rgba(26,22,18,0.08);
+  --shadow-lg:0 8px 32px rgba(26,22,18,0.12);
+  --serif:    'DM Serif Display', Georgia, serif;
+  --mono:     'DM Mono', monospace;
+  --sans:     'DM Sans', sans-serif;
+  --radius:   8px;
+}
+
+html, body { height: 100%; background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 13px; line-height: 1.5; }
+
+/* ── Grain overlay ────────────────────────────────── */
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+
+/* ── Layout ───────────────────────────────────────── */
+#app { display: flex; flex-direction: column; height: 100vh; }
+
+/* ── Header ───────────────────────────────────────── */
+header {
+  background: var(--ink); color: var(--cream); padding: 12px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0; position: relative; overflow: hidden;
+}
+header::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--amber) 0%, transparent 60%);
+}
+.header-left { display: flex; align-items: baseline; gap: 10px; }
+.header-title { font-family: var(--serif); font-size: 18px; letter-spacing: -0.02em; color: var(--cream); }
+.header-title em { font-style: italic; color: #c8a882; }
+.header-sub { font-family: var(--mono); font-size: 9px; color: #6b5e52; letter-spacing: 0.12em; text-transform: uppercase; }
+.data-pill {
+  font-family: var(--mono); font-size: 9px; padding: 3px 10px; border-radius: 20px;
+  border: 1px solid #3d3530; color: #8c7e72; display: flex; align-items: center; gap: 5px;
+  transition: all 0.2s; max-width: 180px;
+}
+.data-pill.loaded { border-color: var(--amber); color: #c8a882; }
+.data-pill-dot { width: 5px; height: 5px; border-radius: 50%; background: #3d3530; flex-shrink: 0; transition: background 0.2s; }
+.data-pill.loaded .data-pill-dot { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+.data-pill-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ── Setup Panel ──────────────────────────────────── */
+#setup-panel {
+  background: var(--paper); border-bottom: 1px solid var(--rule);
+  padding: 14px 18px; flex-shrink: 0;
+  animation: slideDown 0.3s ease;
+}
+@keyframes slideDown { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+
+.setup-grid { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; }
+.setup-grid-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+label { display: block; font-family: var(--mono); font-size: 9px; font-weight: 500; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+
+input[type=text], input[type=password] {
+  width: 100%; background: white; border: 1px solid var(--rule); border-radius: var(--radius);
+  color: var(--ink); font-family: var(--mono); font-size: 11px; padding: 7px 11px;
+  outline: none; transition: border-color 0.15s; box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
+}
+input:focus { border-color: var(--amber); }
+input::placeholder { color: #c0b4a8; }
+
+/* Drop zone */
+.drop-zone {
+  border: 2px dashed var(--rule); border-radius: var(--radius); padding: 10px 14px;
+  text-align: center; cursor: pointer; transition: all 0.2s; background: white;
+  position: relative; overflow: hidden;
+}
+.drop-zone:hover, .drop-zone.drag-over { border-color: var(--amber); background: var(--amber-lt); }
+.drop-zone.loaded { border-color: var(--green); border-style: solid; background: var(--green-lt); }
+.drop-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
+.drop-label { font-family: var(--mono); font-size: 10px; color: var(--muted); pointer-events: none; }
+.drop-label strong { color: var(--ink2); font-weight: 500; }
+.drop-label.loaded { color: var(--green); }
+
+.apply-btn {
+  background: var(--ink); color: var(--cream); font-family: var(--mono); font-size: 11px; font-weight: 500;
+  border: none; border-radius: var(--radius); padding: 8px 18px; cursor: pointer;
+  letter-spacing: 0.04em; transition: all 0.15s; white-space: nowrap; height: fit-content;
+  align-self: end;
+}
+.apply-btn:hover { background: var(--amber); }
+.apply-btn:disabled { background: var(--rule); color: var(--muted); cursor: not-allowed; }
+
+/* Data summary strip */
+#data-summary {
+  display: none; background: var(--amber-lt); border-bottom: 1px solid #f0dcc4;
+  padding: 8px 18px; flex-shrink: 0;
+}
+.summary-inner { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.summary-stat { font-family: var(--mono); font-size: 10px; color: var(--ink2); }
+.summary-stat span { color: var(--amber); font-weight: 500; }
+.summary-cols { font-family: var(--mono); font-size: 9px; color: var(--muted); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.toggle-setup-btn {
+  font-family: var(--mono); font-size: 9px; color: var(--muted); background: none; border: 1px solid var(--rule);
+  border-radius: 4px; padding: 3px 8px; cursor: pointer; transition: all 0.15s; flex-shrink: 0;
+}
+.toggle-setup-btn:hover { color: var(--ink); border-color: var(--muted); }
+
+/* ── Chat ─────────────────────────────────────────── */
+#chat-area { flex: 1; overflow-y: auto; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
+
+/* Welcome */
+#welcome {
+  margin: auto; text-align: center; max-width: 320px; padding: 32px 0;
+  animation: fadeUp 0.5s ease;
+}
+@keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+.welcome-icon { font-size: 36px; margin-bottom: 12px; opacity: 0.6; }
+.welcome-title { font-family: var(--serif); font-size: 22px; color: var(--ink2); margin-bottom: 8px; letter-spacing: -0.02em; }
+.welcome-sub { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.suggestion-chips { display: flex; flex-direction: column; gap: 6px; margin-top: 18px; }
+.chip-btn {
+  background: white; border: 1px solid var(--rule); border-radius: 20px; padding: 7px 14px;
+  font-family: var(--sans); font-size: 11px; color: var(--ink2); cursor: pointer;
+  transition: all 0.15s; text-align: left;
+}
+.chip-btn:hover { border-color: var(--amber); color: var(--amber); background: var(--amber-lt); }
+
+/* Messages */
+.msg { display: flex; gap: 10px; animation: msgIn 0.25s ease; max-width: 100%; }
+@keyframes msgIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+.msg-avatar {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; margin-top: 2px;
+}
+.msg.user .msg-avatar { background: var(--ink); color: var(--cream); font-family: var(--serif); font-size: 11px; }
+.msg.assistant .msg-avatar { background: var(--amber-lt); border: 1px solid #f0dcc4; font-size: 14px; }
+
+.msg-body { flex: 1; min-width: 0; }
+.msg-role { font-family: var(--mono); font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.msg-text {
+  background: white; border: 1px solid var(--rule); border-radius: 0 var(--radius) var(--radius) var(--radius);
+  padding: 10px 13px; font-size: 12px; line-height: 1.65; color: var(--ink2);
+  box-shadow: var(--shadow);
+}
+.msg.user .msg-text { background: var(--ink); color: var(--cream); border-color: transparent; border-radius: var(--radius) 0 var(--radius) var(--radius); }
+.msg.assistant .msg-text { border-radius: 0 var(--radius) var(--radius) var(--radius); }
+
+/* Markdown-ish styling inside msg-text */
+.msg-text strong { font-weight: 600; }
+.msg-text em { font-style: italic; opacity: 0.8; }
+.msg-text code { font-family: var(--mono); font-size: 10px; background: rgba(0,0,0,0.06); padding: 1px 4px; border-radius: 3px; }
+.msg.user .msg-text code { background: rgba(255,255,255,0.15); }
+.msg-text table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 11px; }
+.msg-text th { background: var(--cream); font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; padding: 5px 8px; border: 1px solid var(--rule); color: var(--muted); }
+.msg-text td { padding: 5px 8px; border: 1px solid var(--rule); }
+.msg-text tr:nth-child(even) td { background: var(--paper); }
+.msg-text ul, .msg-text ol { padding-left: 18px; margin: 6px 0; }
+.msg-text li { margin-bottom: 3px; }
+.msg-text p + p { margin-top: 6px; }
+.msg-text h3 { font-family: var(--serif); font-size: 14px; margin: 8px 0 4px; color: var(--ink); }
+
+/* Thinking indicator */
+.thinking { display: flex; align-items: center; gap: 4px; padding: 10px 13px; }
+.thinking span { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: bounce 1.2s infinite; }
+.thinking span:nth-child(2) { animation-delay: 0.2s; }
+.thinking span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce { 0%,80%,100%{transform:translateY(0);opacity:0.4} 40%{transform:translateY(-5px);opacity:1} }
+
+/* ── Input Bar ────────────────────────────────────── */
+#input-bar {
+  padding: 12px 18px; border-top: 1px solid var(--rule); background: var(--paper);
+  flex-shrink: 0; display: flex; gap: 8px; align-items: flex-end;
+}
+#msg-input {
+  flex: 1; background: white; border: 1px solid var(--rule); border-radius: var(--radius);
+  color: var(--ink); font-family: var(--sans); font-size: 12px; padding: 9px 13px;
+  outline: none; resize: none; min-height: 38px; max-height: 120px;
+  transition: border-color 0.15s; line-height: 1.5;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
+}
+#msg-input:focus { border-color: var(--amber); }
+#msg-input::placeholder { color: #c0b4a8; }
+#msg-input:disabled { background: var(--cream); }
+
+#send-btn {
+  background: var(--ink); color: var(--cream); border: none; border-radius: var(--radius);
+  width: 38px; height: 38px; cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s; font-size: 15px;
+}
+#send-btn:hover:not(:disabled) { background: var(--amber); }
+#send-btn:disabled { background: var(--rule); color: var(--muted); cursor: not-allowed; }
+
+/* ── Error toast ──────────────────────────────────── */
+#toast {
+  position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%);
+  background: var(--red); color: white; font-family: var(--mono); font-size: 11px;
+  padding: 8px 16px; border-radius: 6px; box-shadow: var(--shadow-lg);
+  display: none; z-index: 100; max-width: 90%; text-align: center;
+}
+
+/* ── Scrollbar ────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 10px; }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <div>
+        <div class="header-title">Data <em>Chat</em></div>
+        <div class="header-sub">Tableau Extension · Claude AI</div>
+      </div>
+    </div>
+    <div class="data-pill" id="data-pill">
+      <div class="data-pill-dot"></div>
+      <span class="data-pill-name" id="data-pill-name">No data loaded</span>
+    </div>
+  </header>
+
+  <!-- Setup Panel -->
+  <div id="setup-panel">
+    <div class="setup-grid">
+      <div class="setup-grid-inner">
+        <div>
+          <label>Anthropic API Key</label>
+          <input type="password" id="api-key" placeholder="sk-ant-api03-..." autocomplete="off"/>
+        </div>
+        <div>
+          <label>Excel / CSV File</label>
+          <div class="drop-zone" id="drop-zone">
+            <input type="file" id="file-input" accept=".xlsx,.xls,.csv"/>
+            <div class="drop-label" id="drop-label">
+              <strong>Click to upload</strong> or drag & drop
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="apply-btn" id="apply-btn" disabled>Apply →</button>
+    </div>
+  </div>
+
+  <!-- Data Summary Strip (shown after load) -->
+  <div id="data-summary">
+    <div class="summary-inner">
+      <div class="summary-stat">Rows: <span id="stat-rows">—</span></div>
+      <div class="summary-stat">Cols: <span id="stat-cols">—</span></div>
+      <div class="summary-stat">Sheet: <span id="stat-sheet">—</span></div>
+      <div class="summary-cols" id="stat-col-names">—</div>
+      <button class="toggle-setup-btn" id="toggle-setup-btn">↑ Edit</button>
+    </div>
+  </div>
+
+  <!-- Chat Area -->
+  <div id="chat-area">
+    <div id="welcome">
+      <div class="welcome-icon">◈</div>
+      <div class="welcome-title">Ask your data anything</div>
+      <div class="welcome-sub">Upload your Excel file and enter your API key above, then start chatting with your data using natural language.</div>
+      <div class="suggestion-chips" id="suggestion-chips" style="display:none">
+        <button class="chip-btn" onclick="sendSuggestion(this)">Summarize the overall dataset for me</button>
+        <button class="chip-btn" onclick="sendSuggestion(this)">What are the top 5 rows by the highest numeric value?</button>
+        <button class="chip-btn" onclick="sendSuggestion(this)">Are there any missing or unusual values I should know about?</button>
+        <button class="chip-btn" onclick="sendSuggestion(this)">What trends or patterns do you notice?</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Bar -->
+  <div id="input-bar">
+    <textarea id="msg-input" placeholder="Load your data above to start chatting…" rows="1" disabled></textarea>
+    <button id="send-btn" disabled title="Send">➤</button>
+  </div>
+
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ── State ───────────────────────────────────────────────────────────────────
+const state = {
+  apiKey: '',
+  dataReady: false,
+  dataContext: '',       // Summarized data sent to Claude
+  rawRows: [],
+  columns: [],
+  fileName: '',
+  sheetName: '',
+  history: [],           // [{role, content}] for multi-turn
+  thinking: false
+};
+
+// ── Tableau Init (graceful fallback) ────────────────────────────────────────
+let tableauReady = false;
+try {
+  tableau.extensions.initializeAsync().then(() => {
+    tableauReady = true;
+    const settings = tableau.extensions.settings.getAll();
+    if (settings.apiKey) document.getElementById('api-key').value = settings.apiKey;
+    checkApplyReady();
+  }).catch(() => { /* standalone mode */ });
+} catch(e) { /* standalone mode — works fine outside Tableau */ }
+
+// ── File Upload & Parsing ───────────────────────────────────────────────────
+const dropZone   = document.getElementById('drop-zone');
+const fileInput  = document.getElementById('file-input');
+const dropLabel  = document.getElementById('drop-label');
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('drag-over');
+  if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+document.getElementById('api-key').addEventListener('input', checkApplyReady);
+
+function handleFile(file) {
+  state.fileName = file.name;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      let rows, sheetName = '';
+      if (file.name.endsWith('.csv')) {
+        const wb = XLSX.read(e.target.result, { type: 'binary' });
+        sheetName = wb.SheetNames[0];
+        rows = XLSX.utils.sheet_to_json(wb.Sheets[sheetName], { defval: '' });
+      } else {
+        const wb = XLSX.read(new Uint8Array(e.target.result), { type: 'array' });
+        sheetName = wb.SheetNames[0];
+        rows = XLSX.utils.sheet_to_json(wb.Sheets[sheetName], { defval: '' });
+      }
+
+      if (!rows.length) { showToast('File appears empty or unreadable.'); return; }
+
+      state.rawRows   = rows;
+      state.columns   = Object.keys(rows[0]);
+      state.sheetName = sheetName;
+      state.dataContext = buildDataContext(rows, state.columns, file.name, sheetName);
+
+      dropZone.classList.add('loaded');
+      dropLabel.className = 'drop-label loaded';
+      dropLabel.textContent = `✓ ${file.name}`;
+
+      checkApplyReady();
+    } catch(err) {
+      showToast('Could not parse file: ' + err.message);
+    }
+  };
+  if (file.name.endsWith('.csv')) reader.readAsBinaryString(file);
+  else reader.readAsArrayBuffer(file);
+}
+
+// ── Build Data Context for Claude ───────────────────────────────────────────
+function buildDataContext(rows, cols, fileName, sheetName) {
+  const totalRows = rows.length;
+
+  // Column type analysis
+  const colStats = cols.map(col => {
+    const vals = rows.map(r => r[col]).filter(v => v !== '' && v != null);
+    const nums = vals.filter(v => !isNaN(Number(v)) && v !== '');
+    const isNumeric = nums.length / vals.length > 0.8;
+    if (isNumeric && nums.length) {
+      const ns = nums.map(Number);
+      const sum = ns.reduce((a,b)=>a+b,0);
+      const min = Math.min(...ns); const max = Math.max(...ns);
+      const avg = (sum/ns.length).toFixed(2);
+      return `${col} [numeric]: min=${min}, max=${max}, avg=${avg}, sum=${sum.toFixed(2)}, count=${ns.length}`;
+    } else {
+      const unique = [...new Set(vals)];
+      const preview = unique.slice(0,8).map(v=>String(v).substring(0,30)).join(', ');
+      return `${col} [text]: ${unique.length} unique values — e.g. ${preview}${unique.length>8?'…':''}`;
+    }
+  });
+
+  // Sample rows (first 20 + last 5 for large files)
+  const sampleRows = totalRows <= 30
+    ? rows
+    : [...rows.slice(0,20), ...rows.slice(-5)];
+  const sampleCsv = [
+    cols.join(' | '),
+    ...sampleRows.map(r => cols.map(c => String(r[c]).substring(0,40)).join(' | '))
+  ].join('\n');
+
+  return `
+FILE: ${fileName} (Sheet: "${sheetName}")
+TOTAL ROWS: ${totalRows.toLocaleString()} | COLUMNS: ${cols.length}
+
+COLUMN STATISTICS:
+${colStats.join('\n')}
+
+SAMPLE DATA (${sampleRows.length} rows shown):
+${sampleCsv}
+`.trim();
+}
+
+// ── Apply Config ─────────────────────────────────────────────────────────────
+function checkApplyReady() {
+  const key  = document.getElementById('api-key').value.trim();
+  const btn  = document.getElementById('apply-btn');
+  btn.disabled = !(key && state.rawRows.length);
+}
+
+document.getElementById('apply-btn').addEventListener('click', applyConfig);
+
+function applyConfig() {
+  state.apiKey   = document.getElementById('api-key').value.trim();
+  state.dataReady = true;
+  state.history   = []; // reset conversation on new data
+
+  // Update UI
+  document.getElementById('data-summary').style.display = 'block';
+  document.getElementById('stat-rows').textContent = state.rawRows.length.toLocaleString();
+  document.getElementById('stat-cols').textContent = state.columns.length;
+  document.getElementById('stat-sheet').textContent = state.sheetName;
+  document.getElementById('stat-col-names').textContent = state.columns.join(', ');
+
+  const pill = document.getElementById('data-pill');
+  pill.classList.add('loaded');
+  document.getElementById('data-pill-name').textContent = state.fileName;
+
+  document.getElementById('msg-input').disabled = false;
+  document.getElementById('msg-input').placeholder = 'Ask a question about your data…';
+  document.getElementById('send-btn').disabled = false;
+  document.getElementById('suggestion-chips').style.display = 'flex';
+
+  // Save API key to Tableau settings (non-sensitive config only — warn user)
+  if (tableauReady) {
+    tableau.extensions.settings.set('apiKey', state.apiKey);
+    tableau.extensions.settings.saveAsync();
+  }
+
+  // Collapse setup panel
+  document.getElementById('setup-panel').style.display = 'none';
+}
+
+// Toggle setup
+document.getElementById('toggle-setup-btn').addEventListener('click', () => {
+  const panel = document.getElementById('setup-panel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+});
+
+// ── Chat ─────────────────────────────────────────────────────────────────────
+const chatArea = document.getElementById('chat-area');
+const msgInput = document.getElementById('msg-input');
+const sendBtn  = document.getElementById('send-btn');
+
+// Auto-resize textarea
+msgInput.addEventListener('input', () => {
+  msgInput.style.height = 'auto';
+  msgInput.style.height = Math.min(msgInput.scrollHeight, 120) + 'px';
+});
+
+msgInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+});
+sendBtn.addEventListener('click', sendMessage);
+
+function sendSuggestion(btn) {
+  if (!state.dataReady) return;
+  msgInput.value = btn.textContent;
+  sendMessage();
+}
+
+async function sendMessage() {
+  const text = msgInput.value.trim();
+  if (!text || state.thinking || !state.dataReady) return;
+
+  // Clear welcome screen on first message
+  const welcome = document.getElementById('welcome');
+  if (welcome) welcome.remove();
+
+  // Add user message
+  appendMessage('user', text);
+  state.history.push({ role: 'user', content: text });
+  msgInput.value = '';
+  msgInput.style.height = 'auto';
+
+  // Show thinking
+  state.thinking = true;
+  sendBtn.disabled = true;
+  msgInput.disabled = true;
+  const thinkingEl = appendThinking();
+
+  try {
+    const reply = await callClaude(text);
+    thinkingEl.remove();
+    appendMessage('assistant', reply);
+    state.history.push({ role: 'assistant', content: reply });
+  } catch(err) {
+    thinkingEl.remove();
+    showToast(err.message);
+    // Remove last user message from history on failure
+    state.history.pop();
+  } finally {
+    state.thinking = false;
+    sendBtn.disabled = false;
+    msgInput.disabled = false;
+    msgInput.focus();
+  }
+}
+
+// ── Claude API Call ───────────────────────────────────────────────────────────
+async function callClaude(userMessage) {
+  const systemPrompt = `You are a data analyst assistant embedded in a Tableau dashboard. 
+You have been given a dataset to analyze. Answer questions clearly and concisely.
+When showing data, use markdown tables where helpful.
+Be specific with numbers — cite actual values from the data.
+If asked something the data cannot answer, say so clearly.
+
+Here is the dataset you are working with:
+
+${state.dataContext}`;
+
+  // Build messages: system context + full conversation history
+  const messages = state.history.length > 1
+    ? state.history  // already includes current user message
+    : [{ role: 'user', content: userMessage }];
+
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': state.apiKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1024,
+      system: systemPrompt,
+      messages: messages
+    })
+  });
+
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    const msg = err.error?.message || `API error ${response.status}`;
+    throw new Error(msg);
+  }
+
+  const data = await response.json();
+  return data.content?.[0]?.text || '(no response)';
+}
+
+// ── Render Messages ───────────────────────────────────────────────────────────
+function appendMessage(role, text) {
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+
+  const avatar = document.createElement('div');
+  avatar.className = 'msg-avatar';
+  avatar.textContent = role === 'user' ? 'Y' : '◈';
+
+  const body = document.createElement('div');
+  body.className = 'msg-body';
+
+  const roleLabel = document.createElement('div');
+  roleLabel.className = 'msg-role';
+  roleLabel.textContent = role === 'user' ? 'You' : 'Claude';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'msg-text';
+  bubble.innerHTML = renderMarkdown(text);
+
+  body.appendChild(roleLabel);
+  body.appendChild(bubble);
+  div.appendChild(avatar);
+  div.appendChild(body);
+  chatArea.appendChild(div);
+  chatArea.scrollTop = chatArea.scrollHeight;
+  return div;
+}
+
+function appendThinking() {
+  const div = document.createElement('div');
+  div.className = 'msg assistant';
+  div.innerHTML = `
+    <div class="msg-avatar">◈</div>
+    <div class="msg-body">
+      <div class="msg-role">Claude</div>
+      <div class="msg-text">
+        <div class="thinking"><span></span><span></span><span></span></div>
+      </div>
+    </div>`;
+  chatArea.appendChild(div);
+  chatArea.scrollTop = chatArea.scrollHeight;
+  return div;
+}
+
+// ── Minimal Markdown Renderer ─────────────────────────────────────────────────
+function renderMarkdown(text) {
+  return text
+    // Tables
+    .replace(/^\|(.+)\|$/gm, row => '<tr>' + row.split('|').filter((_,i,a)=>i>0&&i<a.length-1).map((c,i) => i===0&&row.includes('---') ? '' : `<td>${c.trim()}</td>`).join('') + '</tr>')
+    .replace(/(<tr>.*<\/tr>\n?)+/gs, match => `<table><tbody>${match}</tbody></table>`)
+    .replace(/<tr><\/tr>\n?/g, '')
+    // Headers
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h3>$1</h3>')
+    // Bold / italic
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    // Code
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    // Lists
+    .replace(/^[-•] (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>\n?)+/gs, match => `<ul>${match}</ul>`)
+    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+    // Paragraphs
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/^(?!<[hult])(.+)$/gm, (m) => m.startsWith('<') ? m : m)
+    .replace(/^([^<\n].+)$/gm, '$1')
+    // Clean up
+    .replace(/\n/g, '<br>');
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 4000);
+}
+</script>
+</body>
+</html>
