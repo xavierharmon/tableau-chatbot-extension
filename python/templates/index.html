@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Data Chat — Tableau Extension (Groq)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+<!-- Tableau Extensions API -->
+<script src="https://cdn.jsdelivr.net/npm/@tableau/extensions-api@1.12.0/dist/tableau.extensions.1.latest.min.js"></script>
+</head>
+<body>
+<div id="app">
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <div>
+        <div class="header-title">Data <em>Chat</em></div>
+        <div class="header-sub">Tableau Extension · Groq AI</div>
+      </div>
+    </div>
+    <div class="data-pill" id="data-pill">
+      <div class="data-pill-dot"></div>
+      <span class="data-pill-name" id="data-pill-name">No data loaded</span>
+    </div>
+  </header>
+
+  <!-- Setup Panel -->
+  <div id="setup-panel">
+    <div class="setup-grid">
+      <div class="setup-grid-inner">
+        <div>
+          <label>Excel / CSV File</label>
+          <div class="drop-zone" id="drop-zone">
+            <input type="file" id="file-input" accept=".xlsx,.xls,.csv"/>
+            <div class="drop-label" id="drop-label">
+              <strong>Click to upload</strong> or drag & drop
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="apply-btn" id="apply-btn" disabled>Apply →</button>
+    </div>
+  </div>
+
+  <!-- Data Summary Strip -->
+  <div id="data-summary">
+    <div class="summary-inner">
+      <div class="summary-stat">Rows: <span id="stat-rows">—</span></div>
+      <div class="summary-stat">Cols: <span id="stat-cols">—</span></div>
+      <div class="summary-stat">Sheet: <span id="stat-sheet">—</span></div>
+      <div class="summary-cols" id="stat-col-names">—</div>
+      <button class="toggle-setup-btn" id="toggle-setup-btn">↑ Edit</button>
+    </div>
+  </div>
+
+  <!-- Chat Area -->
+  <div id="chat-area">
+    <div id="welcome">
+      <div class="welcome-icon">◈</div>
+      <div class="welcome-title">Ask your data anything</div>
+      <div class="welcome-sub">Upload your Excel file above, then start chatting with your data using natural language.</div>
+      <div class="suggestion-chips" id="suggestion-chips" style="display:none">
+        <button class="chip-btn" onclick="sendSuggestion(this)">Summarize the overall dataset for me</button>
+        <button class="chip-btn" onclick="sendSuggestion(this)">What are the top 5 rows by the highest numeric value?</button>
+        <button class="chip-btn" onclick="sendSuggestion(this)">Are there any missing or unusual values I should know about?</button>
+        <button class="chip-btn" onclick="sendSuggestion(this)">What trends or patterns do you notice?</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Bar -->
+  <div id="input-bar">
+    <textarea id="msg-input" placeholder="Load your data above to start chatting…" rows="1" disabled></textarea>
+    <button id="send-btn" disabled title="Send">➤</button>
+  </div>
+
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ── State ─────────────────────────────────────────────────────────────────────
+const state = {
+  dataReady: false,
+  thinking:  false
+};
+
+// ── Tableau Init (graceful fallback) ──────────────────────────────────────────
+try {
+  tableau.extensions.initializeAsync().catch(() => {});
+} catch(e) {}
+
+// ── File Upload ───────────────────────────────────────────────────────────────
+const dropZone  = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+const dropLabel = document.getElementById('drop-label');
+const applyBtn  = document.getElementById('apply-btn');
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('drag-over');
+  if (e.dataTransfer.files[0]) stageFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', e => { if (e.target.files[0]) stageFile(e.target.files[0]); });
+
+let stagedFile = null;
+function stageFile(file) {
+  stagedFile = file;
+  dropZone.classList.add('loaded');
+  dropLabel.className   = 'drop-label loaded';
+  dropLabel.textContent = `✓ ${file.name}`;
+  applyBtn.disabled     = false;
+}
+
+// ── Apply — upload file to Flask backend ──────────────────────────────────────
+applyBtn.addEventListener('click', async () => {
+  if (!stagedFile) return;
+  applyBtn.disabled     = true;
+  applyBtn.textContent  = 'Uploading…';
+
+  const form = new FormData();
+  form.append('file', stagedFile);
+
+  try {
+    const res  = await fetch('/api/upload', { method: 'POST', body: form });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Upload failed');
+
+    const s = data.summary;
+    document.getElementById('data-summary').style.display = 'block';
+    document.getElementById('stat-rows').textContent      = s.row_count.toLocaleString();
+    document.getElementById('stat-cols').textContent      = s.columns.length;
+    document.getElementById('stat-sheet').textContent     = s.sheet_name;
+    document.getElementById('stat-col-names').textContent = s.columns.join(', ');
+
+    const pill = document.getElementById('data-pill');
+    pill.classList.add('loaded');
+    document.getElementById('data-pill-name').textContent = s.file_name;
+
+    document.getElementById('setup-panel').style.display = 'none';
+    document.getElementById('msg-input').disabled        = false;
+    document.getElementById('msg-input').placeholder     = 'Ask a question about your data…';
+    document.getElementById('send-btn').disabled         = false;
+    document.getElementById('suggestion-chips').style.display = 'flex';
+    state.dataReady = true;
+
+  } catch(err) {
+    showToast(err.message);
+    applyBtn.disabled    = false;
+    applyBtn.textContent = 'Apply →';
+  }
+});
+
+document.getElementById('toggle-setup-btn').addEventListener('click', () => {
+  const panel = document.getElementById('setup-panel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+});
+
+// ── Chat ──────────────────────────────────────────────────────────────────────
+const chatArea = document.getElementById('chat-area');
+const msgInput = document.getElementById('msg-input');
+const sendBtn  = document.getElementById('send-btn');
+
+msgInput.addEventListener('input', () => {
+  msgInput.style.height = 'auto';
+  msgInput.style.height = Math.min(msgInput.scrollHeight, 120) + 'px';
+});
+msgInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+});
+sendBtn.addEventListener('click', sendMessage);
+
+function sendSuggestion(btn) {
+  if (!state.dataReady) return;
+  msgInput.value = btn.textContent.trim();
+  sendMessage();
+}
+
+async function sendMessage() {
+  const text = msgInput.value.trim();
+  if (!text || state.thinking || !state.dataReady) return;
+
+  const welcome = document.getElementById('welcome');
+  if (welcome) welcome.remove();
+
+  appendMessage('user', text);
+  msgInput.value        = '';
+  msgInput.style.height = 'auto';
+
+  state.thinking    = true;
+  sendBtn.disabled  = true;
+  msgInput.disabled = true;
+  const thinkingEl  = appendThinking();
+
+  try {
+    const res  = await fetch('/api/chat', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ message: text })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Chat error');
+
+    thinkingEl.remove();
+    appendMessage('assistant', data.reply);
+  } catch(err) {
+    thinkingEl.remove();
+    showToast(err.message);
+  } finally {
+    state.thinking    = false;
+    sendBtn.disabled  = false;
+    msgInput.disabled = false;
+    msgInput.focus();
+  }
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function appendMessage(role, text) {
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+
+  const avatar       = document.createElement('div');
+  avatar.className   = 'msg-avatar';
+  avatar.textContent = role === 'user' ? 'Y' : '◈';
+
+  const body     = document.createElement('div');
+  body.className = 'msg-body';
+
+  const roleLabel       = document.createElement('div');
+  roleLabel.className   = 'msg-role';
+  roleLabel.textContent = role === 'user' ? 'You' : 'Groq';
+
+  const bubble     = document.createElement('div');
+  bubble.className = 'msg-text';
+  bubble.innerHTML = renderMarkdown(text);
+
+  body.appendChild(roleLabel);
+  body.appendChild(bubble);
+  div.appendChild(avatar);
+  div.appendChild(body);
+  chatArea.appendChild(div);
+  chatArea.scrollTop = chatArea.scrollHeight;
+  return div;
+}
+
+function appendThinking() {
+  const div = document.createElement('div');
+  div.className = 'msg assistant';
+  div.innerHTML = `
+    <div class="msg-avatar">◈</div>
+    <div class="msg-body">
+      <div class="msg-role">Groq</div>
+      <div class="msg-text">
+        <div class="thinking"><span></span><span></span><span></span></div>
+      </div>
+    </div>`;
+  chatArea.appendChild(div);
+  chatArea.scrollTop = chatArea.scrollHeight;
+  return div;
+}
+
+function renderMarkdown(text) {
+  return text
+    .replace(/^\|(.+)\|$/gm, row => '<tr>' + row.split('|').filter((_,i,a)=>i>0&&i<a.length-1).map((c,i)=>i===0&&row.includes('---')?'':`<td>${c.trim()}</td>`).join('') + '</tr>')
+    .replace(/(<tr>.*<\/tr>\n?)+/gs, m => `<table><tbody>${m}</tbody></table>`)
+    .replace(/<tr><\/tr>\n?/g, '')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm,  '<h3>$1</h3>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,    '<em>$1</em>')
+    .replace(/`([^`]+)`/g,    '<code>$1</code>')
+    .replace(/^[-•] (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>\n?)+/gs, m => `<ul>${m}</ul>`)
+    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br>');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent   = msg;
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 4000);
+}
+</script>
+</body>
+</html>

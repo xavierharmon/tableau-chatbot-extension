@@ -1,0 +1,2697 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20261.26.0226.1626                               -->
+<workbook original-version='18.1' source-build='2026.1.0 (20261.26.0226.1626)' source-platform='mac' version='18.1' xml:base='https://localhost:8080' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <Extensions />
+    <MapboxVectorStylesAndLayers />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelExtractV2 />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
+    <VizInTooltipHideWorksheet />
+    <WindowsPersistSimpleIdentifiers />
+    <WorksheetBackgroundTransparency />
+  </document-format-change-manifest>
+  <repository-location derived-from='https://public.tableau.com/workbooks/MLBERAvsWins?rev=1.0' id='MLBERAvsWins' path='/workbooks' revision='1.0' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='Sheet 1-Teams' inline='true' name='federated.1arnmq915ejzoh1e4qgbv1gg362s' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='Sheet 1-Teams' name='textscan.1tytswf1rfrex01527h280xxg9mc'>
+            <connection class='textscan' directory='/Users/prof/Documents/New Teams File' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.1tytswf1rfrex01527h280xxg9mc' name='Sheet 1-Teams.csv' table='[Sheet 1-Teams#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='integer' name='yearID' ordinal='0' />
+            <column datatype='string' name='lgID' ordinal='1' />
+            <column datatype='string' name='teamID' ordinal='2' />
+            <column datatype='string' name='franchID' ordinal='3' />
+            <column datatype='string' name='divID' ordinal='4' />
+            <column datatype='integer' name='Rank' ordinal='5' />
+            <column datatype='integer' name='G' ordinal='6' />
+            <column datatype='integer' name='Ghome' ordinal='7' />
+            <column datatype='integer' name='W' ordinal='8' />
+            <column datatype='integer' name='L' ordinal='9' />
+            <column datatype='string' name='DivWin' ordinal='10' />
+            <column datatype='string' name='WCWin' ordinal='11' />
+            <column datatype='string' name='LgWin' ordinal='12' />
+            <column datatype='string' name='WSWin' ordinal='13' />
+            <column datatype='integer' name='R' ordinal='14' />
+            <column datatype='integer' name='AB' ordinal='15' />
+            <column datatype='integer' name='H' ordinal='16' />
+            <column datatype='integer' name='2B' ordinal='17' />
+            <column datatype='integer' name='3B' ordinal='18' />
+            <column datatype='integer' name='HR' ordinal='19' />
+            <column datatype='integer' name='BB' ordinal='20' />
+            <column datatype='integer' name='SO' ordinal='21' />
+            <column datatype='integer' name='SB' ordinal='22' />
+            <column datatype='integer' name='CS' ordinal='23' />
+            <column datatype='integer' name='HBP' ordinal='24' />
+            <column datatype='integer' name='SF' ordinal='25' />
+            <column datatype='integer' name='RA' ordinal='26' />
+            <column datatype='integer' name='ER' ordinal='27' />
+            <column datatype='real' name='ERA' ordinal='28' />
+            <column datatype='integer' name='CG' ordinal='29' />
+            <column datatype='integer' name='SHO' ordinal='30' />
+            <column datatype='integer' name='SV' ordinal='31' />
+            <column datatype='integer' name='IPouts' ordinal='32' />
+            <column datatype='integer' name='HA' ordinal='33' />
+            <column datatype='integer' name='HRA' ordinal='34' />
+            <column datatype='integer' name='BBA' ordinal='35' />
+            <column datatype='integer' name='SOA' ordinal='36' />
+            <column datatype='integer' name='E' ordinal='37' />
+            <column datatype='integer' name='DP' ordinal='38' />
+            <column datatype='real' name='FP' ordinal='39' />
+            <column datatype='string' name='name' ordinal='40' />
+            <column datatype='string' name='park' ordinal='41' />
+            <column datatype='integer' name='attendance' ordinal='42' />
+            <column datatype='integer' name='BPF' ordinal='43' />
+            <column datatype='integer' name='PPF' ordinal='44' />
+            <column datatype='string' name='teamIDBR' ordinal='45' />
+            <column datatype='string' name='teamIDlahman45' ordinal='46' />
+            <column datatype='string' name='teamIDretro' ordinal='47' />
+            <column datatype='string' name='F49' ordinal='48' />
+            <column datatype='string' name='F50' ordinal='49' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>yearID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[yearID]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>yearID</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>lgID</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[lgID]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>lgID</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>teamID</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[teamID]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>teamID</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>franchID</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[franchID]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>franchID</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>divID</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[divID]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>divID</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rank</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Rank]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>Rank</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>G</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[G]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>G</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Ghome</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Ghome]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>Ghome</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>W</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[W]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>W</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>L</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[L]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>L</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>DivWin</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[DivWin]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>DivWin</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WCWin</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[WCWin]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>WCWin</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>LgWin</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[LgWin]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>LgWin</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WSWin</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[WSWin]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>WSWin</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>R</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[R]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>R</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AB</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[AB]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>AB</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>H</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[H]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>H</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>2B</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[2B]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>2B</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>3B</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[3B]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>3B</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>HR</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[HR]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>HR</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BB</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[BB]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>BB</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SO</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SO]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>SO</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SB</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SB]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>SB</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CS</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[CS]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>CS</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>HBP</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[HBP]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>HBP</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SF</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SF]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>SF</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>RA</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[RA]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>RA</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ER</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[ER]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>ER</remote-alias>
+            <ordinal>27</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ERA</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[ERA]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>ERA</remote-alias>
+            <ordinal>28</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CG</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[CG]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>CG</remote-alias>
+            <ordinal>29</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SHO</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SHO]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>SHO</remote-alias>
+            <ordinal>30</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SV</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SV]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>SV</remote-alias>
+            <ordinal>31</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IPouts</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[IPouts]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>IPouts</remote-alias>
+            <ordinal>32</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>HA</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[HA]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>HA</remote-alias>
+            <ordinal>33</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>HRA</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[HRA]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>HRA</remote-alias>
+            <ordinal>34</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BBA</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[BBA]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>BBA</remote-alias>
+            <ordinal>35</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SOA</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SOA]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>SOA</remote-alias>
+            <ordinal>36</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>E</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[E]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>E</remote-alias>
+            <ordinal>37</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>DP</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[DP]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>DP</remote-alias>
+            <ordinal>38</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FP</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[FP]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>FP</remote-alias>
+            <ordinal>39</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[name]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>name</remote-alias>
+            <ordinal>40</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>park</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[park]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>park</remote-alias>
+            <ordinal>41</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>attendance</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[attendance]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>attendance</remote-alias>
+            <ordinal>42</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BPF</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[BPF]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>BPF</remote-alias>
+            <ordinal>43</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PPF</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[PPF]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>PPF</remote-alias>
+            <ordinal>44</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>teamIDBR</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[teamIDBR]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>teamIDBR</remote-alias>
+            <ordinal>45</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>teamIDlahman45</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[teamIDlahman45]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>teamIDlahman45</remote-alias>
+            <ordinal>46</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>teamIDretro</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[teamIDretro]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>teamIDretro</remote-alias>
+            <ordinal>47</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>F49</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[F49]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>F49</remote-alias>
+            <ordinal>48</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>F50</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[F50]</local-name>
+            <parent-name>[Sheet 1-Teams.csv]</parent-name>
+            <remote-alias>F50</remote-alias>
+            <ordinal>49</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Date' datatype='date' name='[Calculation_6272740273713610752]' role='dimension' type='quantitative'>
+        <calculation class='tableau' formula='DATE(&apos;01-01-&apos;+str([yearID]))' />
+      </column>
+      <column caption='Attendance title' datatype='string' name='[Calculation_6272740273716473857]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='&apos;Earned Run Average vs Wins for &apos; + [name]' />
+      </column>
+      <column caption='WIn %' datatype='real' default-format='n#,##0.0000;-#,##0.0000' name='[Calculation_6272740273719664642]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[W] / ([L] + [W])' />
+      </column>
+      <column caption='Div Win' datatype='string' name='[DivWin]' role='dimension' type='nominal' />
+      <column datatype='real' name='[ERA]' role='measure' type='quantitative' />
+      <column datatype='string' name='[F49]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+      <column datatype='string' name='[F50]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+      <column caption='I Pouts' datatype='integer' name='[IPouts]' role='measure' type='quantitative' />
+      <column caption='Losses' datatype='integer' name='[L]' role='measure' type='quantitative' />
+      <column caption='Lg Win' datatype='string' name='[LgWin]' role='dimension' type='nominal' />
+      <column caption='WC Win' datatype='string' name='[WCWin]' role='dimension' type='nominal' />
+      <column caption='WS Win' datatype='string' name='[WSWin]' role='dimension' type='nominal' />
+      <column caption='Wins' datatype='integer' name='[W]' role='measure' type='quantitative' />
+      <column caption='Sheet 1-Teams.csv' datatype='table' name='[__tableau_internal_object_id__].[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]' role='measure' type='quantitative' />
+      <column caption='Attendance' datatype='integer' name='[attendance]' role='measure' type='quantitative' />
+      <column caption='Div ID' datatype='string' name='[divID]' role='dimension' type='nominal' />
+      <column caption='Franch ID' datatype='string' name='[franchID]' role='dimension' type='nominal' />
+      <column caption='Lg ID' datatype='string' name='[lgID]' role='dimension' type='nominal' />
+      <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+      <column caption='Park' datatype='string' name='[park]' role='dimension' type='nominal' />
+      <column caption='Team IDBR' datatype='string' name='[teamIDBR]' role='dimension' type='nominal' />
+      <column caption='Team ID' datatype='string' name='[teamID]' role='dimension' type='nominal' />
+      <column caption='Team I Dretro' datatype='string' name='[teamIDretro]' role='dimension' type='nominal' />
+      <column caption='Year ID' datatype='integer' default-format='*YYYY' name='[yearID]' role='dimension' type='ordinal' />
+      <column-instance column='[ERA]' derivation='Sum' name='[sum:ERA:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[W]' derivation='Sum' name='[sum:W:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[attendance]' derivation='Sum' name='[sum:attendance:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_6272740273713610752]' derivation='Year-Trunc' name='[tyr:Calculation_6272740273713610752:ok]' pivot='key' type='ordinal' />
+      <group caption='Action (Name)' hidden='true' name='[Action (Name)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[name]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (F49,F50,Name)' hidden='true' name='[Tooltip (F49,F50,Name)]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[F49]' />
+          <groupfilter function='level-members' level='[F50]' />
+          <groupfilter function='level-members' level='[name]' />
+        </groupfilter>
+      </group>
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='Data/tableau-temp/#TableauTemp_1y4srvu1weme0z1brfifs0a7jai9.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='06/25/2022 02:18:48 AM' username=''>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>yearID</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[yearID]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>yearID</remote-alias>
+              <ordinal>0</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>12</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>lgID</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[lgID]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>lgID</remote-alias>
+              <ordinal>1</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>teamID</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[teamID]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>teamID</remote-alias>
+              <ordinal>2</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>31</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>franchID</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[franchID]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>franchID</remote-alias>
+              <ordinal>3</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>30</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>divID</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[divID]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>divID</remote-alias>
+              <ordinal>4</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Rank</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Rank]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Rank</remote-alias>
+              <ordinal>5</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>6</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>G</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[G]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>G</remote-alias>
+              <ordinal>6</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Ghome</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Ghome]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Ghome</remote-alias>
+              <ordinal>7</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>14</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>W</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[W]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>W</remote-alias>
+              <ordinal>8</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>75</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>L</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[L]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>L</remote-alias>
+              <ordinal>9</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>74</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>DivWin</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[DivWin]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>DivWin</remote-alias>
+              <ordinal>10</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>WCWin</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[WCWin]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>WCWin</remote-alias>
+              <ordinal>11</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>LgWin</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[LgWin]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>LgWin</remote-alias>
+              <ordinal>12</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>WSWin</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[WSWin]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>WSWin</remote-alias>
+              <ordinal>13</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>R</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[R]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>R</remote-alias>
+              <ordinal>14</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>224</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>AB</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[AB]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>AB</remote-alias>
+              <ordinal>15</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>242</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>H</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[H]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>H</remote-alias>
+              <ordinal>16</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>232</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>2B</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[2B]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>2B</remote-alias>
+              <ordinal>17</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>132</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>3B</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[3B]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>3B</remote-alias>
+              <ordinal>18</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>51</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>HR</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[HR]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>HR</remote-alias>
+              <ordinal>19</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>162</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>BB</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[BB]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>BB</remote-alias>
+              <ordinal>20</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>204</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>SO</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[SO]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>SO</remote-alias>
+              <ordinal>21</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>270</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>SB</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[SB]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>SB</remote-alias>
+              <ordinal>22</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>125</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>CS</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[CS]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>CS</remote-alias>
+              <ordinal>23</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>56</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>HBP</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[HBP]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>HBP</remote-alias>
+              <ordinal>24</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>80</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>SF</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[SF]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>SF</remote-alias>
+              <ordinal>25</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>54</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>RA</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[RA]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>RA</remote-alias>
+              <ordinal>26</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>227</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ER</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[ER]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>ER</remote-alias>
+              <ordinal>27</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>219</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ERA</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[ERA]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>ERA</remote-alias>
+              <ordinal>28</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>180</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>CG</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[CG]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>CG</remote-alias>
+              <ordinal>29</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>16</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>SHO</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[SHO]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>SHO</remote-alias>
+              <ordinal>30</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>24</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>SV</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[SV]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>SV</remote-alias>
+              <ordinal>31</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>52</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>IPouts</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[IPouts]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>IPouts</remote-alias>
+              <ordinal>32</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>171</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>HA</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[HA]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>HA</remote-alias>
+              <ordinal>33</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>237</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>HRA</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[HRA]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>HRA</remote-alias>
+              <ordinal>34</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>141</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>BBA</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[BBA]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>BBA</remote-alias>
+              <ordinal>35</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>195</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>SOA</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[SOA]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>SOA</remote-alias>
+              <ordinal>36</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>274</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>E</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[E]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>E</remote-alias>
+              <ordinal>37</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>88</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>DP</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[DP]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>DP</remote-alias>
+              <ordinal>38</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>99</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>FP</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[FP]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>FP</remote-alias>
+              <ordinal>39</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>15</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[name]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>name</remote-alias>
+              <ordinal>40</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>31</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>park</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[park]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>park</remote-alias>
+              <ordinal>41</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>33</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>attendance</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[attendance]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>attendance</remote-alias>
+              <ordinal>42</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>331</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>BPF</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[BPF]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>BPF</remote-alias>
+              <ordinal>43</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>32</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>PPF</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[PPF]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>PPF</remote-alias>
+              <ordinal>44</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>31</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>teamIDBR</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[teamIDBR]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>teamIDBR</remote-alias>
+              <ordinal>45</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>31</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>teamIDlahman45</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[teamIDlahman45]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>teamIDlahman45</remote-alias>
+              <ordinal>46</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>30</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>teamIDretro</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[teamIDretro]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>teamIDretro</remote-alias>
+              <ordinal>47</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>31</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>F49</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[F49]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>F49</remote-alias>
+              <ordinal>48</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>28</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>F50</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[F50]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>F50</remote-alias>
+              <ordinal>49</ordinal>
+              <family>Sheet 1-Teams.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>19</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[tyr:Calculation_6272740273713610752:ok]' type='palette'>
+            <map to='#499894'>
+              <bucket>#2018-01-01 00:00:00#</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>#2010-01-01 00:00:00#</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>#2014-01-01 00:00:00#</bucket>
+            </map>
+            <map to='#86bcb6'>
+              <bucket>#2019-01-01 00:00:00#</bucket>
+            </map>
+            <map to='#8cd17d'>
+              <bucket>#2015-01-01 00:00:00#</bucket>
+            </map>
+            <map to='#a0cbe8'>
+              <bucket>#2011-01-01 00:00:00#</bucket>
+            </map>
+            <map to='#b6992d'>
+              <bucket>#2016-01-01 00:00:00#</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>#2020-01-01 00:00:00#</bucket>
+            </map>
+            <map to='#f1ce63'>
+              <bucket>#2017-01-01 00:00:00#</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>#2012-01-01 00:00:00#</bucket>
+            </map>
+            <map to='#ff9d9a'>
+              <bucket>#2021-01-01 00:00:00#</bucket>
+            </map>
+            <map to='#ffbe7d'>
+              <bucket>#2013-01-01 00:00:00#</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:attendance:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:ERA:qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:W:qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='Sheet 1-Teams.csv' id='Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B'>
+            <properties context=''>
+              <relation connection='textscan.1tytswf1rfrex01527h280xxg9mc' name='Sheet 1-Teams.csv' table='[Sheet 1-Teams#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='integer' name='yearID' ordinal='0' />
+                  <column datatype='string' name='lgID' ordinal='1' />
+                  <column datatype='string' name='teamID' ordinal='2' />
+                  <column datatype='string' name='franchID' ordinal='3' />
+                  <column datatype='string' name='divID' ordinal='4' />
+                  <column datatype='integer' name='Rank' ordinal='5' />
+                  <column datatype='integer' name='G' ordinal='6' />
+                  <column datatype='integer' name='Ghome' ordinal='7' />
+                  <column datatype='integer' name='W' ordinal='8' />
+                  <column datatype='integer' name='L' ordinal='9' />
+                  <column datatype='string' name='DivWin' ordinal='10' />
+                  <column datatype='string' name='WCWin' ordinal='11' />
+                  <column datatype='string' name='LgWin' ordinal='12' />
+                  <column datatype='string' name='WSWin' ordinal='13' />
+                  <column datatype='integer' name='R' ordinal='14' />
+                  <column datatype='integer' name='AB' ordinal='15' />
+                  <column datatype='integer' name='H' ordinal='16' />
+                  <column datatype='integer' name='2B' ordinal='17' />
+                  <column datatype='integer' name='3B' ordinal='18' />
+                  <column datatype='integer' name='HR' ordinal='19' />
+                  <column datatype='integer' name='BB' ordinal='20' />
+                  <column datatype='integer' name='SO' ordinal='21' />
+                  <column datatype='integer' name='SB' ordinal='22' />
+                  <column datatype='integer' name='CS' ordinal='23' />
+                  <column datatype='integer' name='HBP' ordinal='24' />
+                  <column datatype='integer' name='SF' ordinal='25' />
+                  <column datatype='integer' name='RA' ordinal='26' />
+                  <column datatype='integer' name='ER' ordinal='27' />
+                  <column datatype='real' name='ERA' ordinal='28' />
+                  <column datatype='integer' name='CG' ordinal='29' />
+                  <column datatype='integer' name='SHO' ordinal='30' />
+                  <column datatype='integer' name='SV' ordinal='31' />
+                  <column datatype='integer' name='IPouts' ordinal='32' />
+                  <column datatype='integer' name='HA' ordinal='33' />
+                  <column datatype='integer' name='HRA' ordinal='34' />
+                  <column datatype='integer' name='BBA' ordinal='35' />
+                  <column datatype='integer' name='SOA' ordinal='36' />
+                  <column datatype='integer' name='E' ordinal='37' />
+                  <column datatype='integer' name='DP' ordinal='38' />
+                  <column datatype='real' name='FP' ordinal='39' />
+                  <column datatype='string' name='name' ordinal='40' />
+                  <column datatype='string' name='park' ordinal='41' />
+                  <column datatype='integer' name='attendance' ordinal='42' />
+                  <column datatype='integer' name='BPF' ordinal='43' />
+                  <column datatype='integer' name='PPF' ordinal='44' />
+                  <column datatype='string' name='teamIDBR' ordinal='45' />
+                  <column datatype='string' name='teamIDlahman45' ordinal='46' />
+                  <column datatype='string' name='teamIDretro' ordinal='47' />
+                  <column datatype='string' name='F49' ordinal='48' />
+                  <column datatype='string' name='F50' ordinal='49' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <mapsources>
+    <mapsource name='Tableau' />
+  </mapsources>
+  <actions>
+    <action caption='Filter1' name='[Action1_C9BA25EFB621418DB1EED0EC0D2C96CA]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Baseball Dashboard' type='sheet' worksheet='Baseball Stadium Locations' />
+      <link caption='Filter1' delimiter=',' escape='\' expression='tsl:Baseball%20Dashboard?%5Bfederated.1arnmq915ejzoh1e4qgbv1gg362s%5D.%5Bname%5D~s0=&lt;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[name]~na&gt;' include-null='true' multi-select='true' url-escape='true' />
+      <command command='tsc:tsl-filter'>
+        <param name='exclude' value='Baseball Stadium Locations' />
+        <param name='on-empty' value='none' />
+        <param name='target' value='Baseball Dashboard' />
+      </command>
+    </action>
+    <datasources>
+      <datasource caption='Sheet 1-Teams' name='federated.1arnmq915ejzoh1e4qgbv1gg362s' />
+    </datasources>
+    <datasource-dependencies datasource='federated.1arnmq915ejzoh1e4qgbv1gg362s'>
+      <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+    </datasource-dependencies>
+  </actions>
+  <worksheets>
+    <worksheet name='Attendance label'>
+      <repository-location derived-from='https://public.tableau.com/workbooks/MLBERAvsWins/Attendancelabel?rev=' id='61012061' path='/workbooks/MLBERAvsWins' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet 1-Teams' name='federated.1arnmq915ejzoh1e4qgbv1gg362s' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1arnmq915ejzoh1e4qgbv1gg362s'>
+            <column caption='Attendance title' datatype='string' name='[Calculation_6272740273716473857]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='&apos;Earned Run Average vs Wins for &apos; + [name]' />
+            </column>
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_6272740273716473857]' derivation='None' name='[none:Calculation_6272740273716473857:nk]' pivot='key' type='nominal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[Action (Name)]'>
+            <groupfilter function='empty-level' member='[name]' user:ui-action-filter='[Action1_BE7A2F7D381D422AB1270D52D1C66B36]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]'>
+            <groupfilter function='level-members' level='[none:name:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]</column>
+            <column>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[Action (Name)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='text-align' value='center' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:Calculation_6272740273716473857:nk]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run fontsize='16'>&lt;</run>
+                <run fontsize='16'>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:Calculation_6272740273716473857:nk]</run>
+                <run fontsize='16'>&gt;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{C7A1EA0D-5DF7-45ED-B45D-F842D72DFACC}' />
+    </worksheet>
+    <worksheet name='Attendance vs wins'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Attendance vs Wins for &lt;</run>
+            <run>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]</run>
+            <run>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='https://public.tableau.com/workbooks/MLBERAvsWins/Attendancevswins?rev=' id='61012059' path='/workbooks/MLBERAvsWins' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet 1-Teams' name='federated.1arnmq915ejzoh1e4qgbv1gg362s' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1arnmq915ejzoh1e4qgbv1gg362s'>
+            <column caption='Date' datatype='date' name='[Calculation_6272740273713610752]' role='dimension' type='quantitative'>
+              <calculation class='tableau' formula='DATE(&apos;01-01-&apos;+str([yearID]))' />
+            </column>
+            <column caption='Wins' datatype='integer' name='[W]' role='measure' type='quantitative' />
+            <column caption='Attendance' datatype='integer' name='[attendance]' role='measure' type='quantitative' />
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[W]' derivation='Sum' name='[sum:W:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[attendance]' derivation='Sum' name='[sum:attendance:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_6272740273713610752]' derivation='Year-Trunc' name='[tyr:Calculation_6272740273713610752:ok]' pivot='key' type='ordinal' />
+            <column caption='Year ID' datatype='integer' default-format='*YYYY' name='[yearID]' role='dimension' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[Action (Name)]'>
+            <groupfilter function='empty-level' member='[name]' user:ui-action-filter='[Action1_BE7A2F7D381D422AB1270D52D1C66B36]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]'>
+            <groupfilter function='level-members' level='[none:name:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]</column>
+            <column>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[Action (Name)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:W:qk]' field-type='quantitative' fold='true' scope='rows' type='space' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]' />
+              <color column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]' />
+            </encodings>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:attendance:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]' />
+              <color column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]' />
+            </encodings>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:W:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]' />
+              <color column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>([federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:attendance:qk] + [federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:W:qk])</rows>
+        <cols>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[tyr:Calculation_6272740273713610752:ok]</cols>
+      </table>
+      <simple-id uuid='{3DE2B520-3D2C-4DEF-90F8-675CC15D5ECF}' />
+    </worksheet>
+    <worksheet name='Baseball Stadium Locations'>
+      <repository-location derived-from='https://public.tableau.com/workbooks/MLBERAvsWins/BaseballStadiumLocations?rev=' id='61012057' path='/workbooks/MLBERAvsWins' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet 1-Teams' name='federated.1arnmq915ejzoh1e4qgbv1gg362s' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.1arnmq915ejzoh1e4qgbv1gg362s'>
+            <column datatype='string' name='[F49]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+            <column datatype='string' name='[F50]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column-instance column='[F49]' derivation='None' name='[none:F49:nk]' pivot='key' type='nominal' />
+            <column-instance column='[F50]' derivation='None' name='[none:F50:nk]' pivot='key' type='nominal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='map-layer'>
+            <format attr='enabled' id='hillshade_highlight_bright' value='true' />
+            <format attr='enabled' id='hillshade_highlight_med' value='true' />
+            <format attr='enabled' id='hillshade_shadow_faint' value='true' />
+            <format attr='enabled' id='hillshade_shadow_med' value='true' />
+            <format attr='enabled' id='hillshade_shadow_dark' value='true' />
+            <format attr='enabled' id='hillshade_shadow_extreme' value='true' />
+            <format attr='enabled' id='Coastline' value='true' />
+            <format attr='enabled' id='b01002_001e' value='false' />
+            <format attr='enabled' id='b01002_002e' value='false' />
+            <format attr='enabled' id='b01002_003e' value='false' />
+            <format attr='enabled' id='dp02_0001e' value='false' />
+            <format attr='enabled' id='dp02_0015e' value='false' />
+            <format attr='enabled' id='dp03_0027e_plus_dp03_0029e' value='false' />
+            <format attr='enabled' id='dp03_0028e' value='false' />
+            <format attr='enabled' id='dp03_0030e_plus_dp03_0031e' value='false' />
+            <format attr='enabled' id='dp03_0062e' value='false' />
+            <format attr='enabled' id='dp03_0088e' value='false' />
+            <format attr='enabled' id='dp04_0001e' value='false' />
+            <format attr='enabled' id='dp04_0046e' value='false' />
+            <format attr='enabled' id='dp04_0047e' value='false' />
+            <format attr='enabled' id='dp04_0089e' value='false' />
+            <format attr='enabled' id='dp05_0001e' value='false' />
+            <format attr='enabled' id='dp05_0002e_div_dp05_0003e' value='false' />
+            <format attr='enabled' id='dp05_0032e' value='false' />
+            <format attr='enabled' id='dp05_0033e' value='false' />
+            <format attr='enabled' id='dp05_0034e' value='false' />
+            <format attr='enabled' id='dp05_0039e' value='false' />
+            <format attr='enabled' id='dp05_0047e' value='false' />
+            <format attr='enabled' id='dp05_0053e' value='false' />
+            <format attr='enabled' id='dp05_0066e' value='false' />
+            <format attr='enabled' id='dp05_0077e' value='false' />
+            <format attr='enabled' id='parks' value='false' />
+            <format attr='enabled' id='landcover_wood' value='false' />
+            <format attr='enabled' id='landcover_scrub' value='false' />
+            <format attr='enabled' id='landcover_grass' value='false' />
+            <format attr='enabled' id='landcover_crop' value='false' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0' />
+            <format attr='map-style' value='normal' />
+          </style-rule>
+          <style-rule element='map-data-layer'>
+            <format attr='palette' value='tableau-map-blue-green-light' />
+            <format attr='geo-area-type' value='State' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Shape' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <text column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]' />
+              <lod column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:F49:nk]' />
+              <lod column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:F50:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[Team: <[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'><![CDATA[<Sheet name="Sheet 6" maxwidth="500" maxheight="300" filter="<All Fields>">]]></run>
+                <run>Æ&#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='shape' value='Custom Shapes/baseball stadium.png' />
+                <format attr='size' value='2.2430939674377441' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[Latitude (generated)]</rows>
+        <cols>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[Longitude (generated)]</cols>
+      </table>
+      <simple-id uuid='{65A5D67F-EF64-4785-AB30-723A839D8AAA}' />
+    </worksheet>
+    <worksheet name='ERA Label'>
+      <repository-location derived-from='https://public.tableau.com/workbooks/MLBERAvsWins/ERALabel?rev=' id='61012062' path='/workbooks/MLBERAvsWins' revision='' />
+      <table>
+        <view>
+          <datasources />
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{782CDD0C-0CB7-4406-A6BE-1DE89DA12256}' />
+    </worksheet>
+    <worksheet name='ERA vs Wins'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run><![CDATA[Earned Run Average and vs Wins for <]]></run>
+            <run>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]</run>
+            <run>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='https://public.tableau.com/workbooks/MLBERAvsWins/ERAvsWins?rev=' id='61012060' path='/workbooks/MLBERAvsWins' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet 1-Teams' name='federated.1arnmq915ejzoh1e4qgbv1gg362s' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1arnmq915ejzoh1e4qgbv1gg362s'>
+            <column caption='Date' datatype='date' name='[Calculation_6272740273713610752]' role='dimension' type='quantitative'>
+              <calculation class='tableau' formula='DATE(&apos;01-01-&apos;+str([yearID]))' />
+            </column>
+            <column datatype='real' name='[ERA]' role='measure' type='quantitative' />
+            <column caption='Wins' datatype='integer' name='[W]' role='measure' type='quantitative' />
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[ERA]' derivation='Sum' name='[sum:ERA:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[W]' derivation='Sum' name='[sum:W:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_6272740273713610752]' derivation='Year-Trunc' name='[tyr:Calculation_6272740273713610752:ok]' pivot='key' type='ordinal' />
+            <column caption='Year ID' datatype='integer' default-format='*YYYY' name='[yearID]' role='dimension' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[Action (Name)]'>
+            <groupfilter function='empty-level' member='[name]' user:ui-action-filter='[Action1_BE7A2F7D381D422AB1270D52D1C66B36]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]'>
+            <groupfilter function='level-members' level='[none:name:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]</column>
+            <column>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[Action (Name)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:W:qk]' field-type='quantitative' fold='true' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#b4b4b4' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='color' value='#000000' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]' />
+              <color column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]' />
+            </encodings>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:ERA:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]' />
+              <color column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]' />
+            </encodings>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:W:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]' />
+              <color column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>([federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:ERA:qk] + [federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:W:qk])</rows>
+        <cols>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[tyr:Calculation_6272740273713610752:ok]</cols>
+      </table>
+      <simple-id uuid='{4F816677-9991-4F9F-8D3B-16A16142672F}' />
+    </worksheet>
+    <worksheet name='Sheet 6'>
+      <repository-location derived-from='https://public.tableau.com/workbooks/MLBERAvsWins/Sheet6?rev=' id='61012058' path='/workbooks/MLBERAvsWins' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet 1-Teams' name='federated.1arnmq915ejzoh1e4qgbv1gg362s' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1arnmq915ejzoh1e4qgbv1gg362s'>
+            <column caption='Date' datatype='date' name='[Calculation_6272740273713610752]' role='dimension' type='quantitative'>
+              <calculation class='tableau' formula='DATE(&apos;01-01-&apos;+str([yearID]))' />
+            </column>
+            <column caption='WIn %' datatype='real' default-format='n#,##0.0000;-#,##0.0000' name='[Calculation_6272740273719664642]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[W] / ([L] + [W])' />
+            </column>
+            <column datatype='string' name='[F49]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+            <column datatype='string' name='[F50]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column caption='Losses' datatype='integer' name='[L]' role='measure' type='quantitative' />
+            <column caption='Wins' datatype='integer' name='[W]' role='measure' type='quantitative' />
+            <column caption='Attendance' datatype='integer' name='[attendance]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_6272740273719664642]' derivation='Avg' name='[avg:Calculation_6272740273719664642:qk]' pivot='key' type='quantitative' />
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column-instance column='[L]' derivation='Sum' name='[sum:L:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[W]' derivation='Sum' name='[sum:W:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[attendance]' derivation='Sum' name='[sum:attendance:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_6272740273713610752]' derivation='Year-Trunc' name='[tyr:Calculation_6272740273713610752:ok]' pivot='key' type='ordinal' />
+            <column caption='Year ID' datatype='integer' default-format='*YYYY' name='[yearID]' role='dimension' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:W:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:L:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:attendance:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[avg:Calculation_6272740273719664642:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:W:qk]&quot;</bucket>
+              <bucket>&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:L:qk]&quot;</bucket>
+              <bucket>&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:attendance:qk]&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <filter class='categorical' column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[Tooltip (F49,F50,Name)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action - Sheet 6]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[F49]' />
+              <groupfilter function='level-members' level='[F50]' />
+              <groupfilter function='level-members' level='[name]' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]</column>
+            <column>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[Tooltip (F49,F50,Name)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[tyr:Calculation_6272740273713610752:ok]</rows>
+        <cols>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]</cols>
+      </table>
+      <simple-id uuid='{2A934E03-43B0-4655-8D82-44383638E1E5}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard enable-sort-zone-taborder='true' name='Baseball Dashboard'>
+      <repository-location derived-from='https://public.tableau.com/workbooks/MLBERAvsWins/BaseballDashboard?rev=' id='61012063' path='/workbooks/MLBERAvsWins' revision='' />
+      <style />
+      <size maxheight='760' maxwidth='1120' minheight='760' minwidth='1120' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='45' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='90132' id='44' param='horz' type-v2='layout-flow' w='100000' x='0' y='9868' />
+          <zone h='9868' id='46' param='horz' type-v2='layout-flow' w='100000' x='0' y='0'>
+            <zone forceUpdate='true' h='9868' id='47' type-v2='text' w='100000' x='0' y='0'>
+              <formatted-text>
+                <run fontalignment='1' fontcolor='#30324f' fontsize='20'>Baseball By The Numbers</run>
+              </formatted-text>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+                <format attr='background-color' value='#eec300' />
+              </zone-style>
+            </zone>
+          </zone>
+        </zone>
+        <zone h='87237' id='35' is-scaled='1' param='Image/savannah bananas .jpeg' type-v2='bitmap' w='98393' x='714' y='11711' />
+        <zone h='57368' id='36' name='Baseball Stadium Locations' show-title='false' w='96607' x='1518' y='22237' />
+        <zone forceUpdate='true' h='7763' id='37' type-v2='text' w='96786' x='1607' y='13289'>
+          <formatted-text>
+            <run bold='true' fontcolor='#ffffff' fontsize='16'>Click on a team to see the realtionship between their Earned Run average and number of wins in a season.</run>
+          </formatted-text>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='background-color' value='#555555a0' />
+          </zone-style>
+        </zone>
+        <zone h='27500' id='38' name='ERA vs Wins' show-title='false' w='96429' x='1786' y='70395' />
+        <zone h='4474' id='39' leg-item-layout='horz' name='ERA vs Wins' pane-specification-id='1' param='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]' show-title='false' type-v2='color' w='22411' x='8571' y='89868' />
+        <zone forceUpdate='true' h='9868' id='56' param='[com.yourcompany.data-chat].[1.0.0].[http://localhost:8765/index.html]' type-v2='dashboard-object' w='33304' x='47946' y='3289'>
+          <add-in add-in-id='com.yourcompany.data-chat' extension-url='http://localhost:8765/index.html' extension-version='1.0.0' instance-id='FEE82F6A428E459A8A5D44B76F21C84F'>
+            <instance-settings />
+            <type-settings>
+              <dashboard />
+            </type-settings>
+          </add-in>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='1100' minheight='1100' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='55' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='100000' id='54' param='vert' type-v2='layout-flow' w='100000' x='0' y='0'>
+                <zone forceUpdate='true' h='9868' id='47' type-v2='text' w='100000' x='0' y='0'>
+                  <formatted-text>
+                    <run fontalignment='1' fontcolor='#30324f' fontsize='20'>Baseball By The Numbers</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                    <format attr='background-color' value='#eec300' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='87237' id='35' is-fixed='true' is-scaled='1' param='Image/savannah bananas .jpeg' type-v2='bitmap' w='98393' x='714' y='11711'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' h='7763' id='37' type-v2='text' w='96786' x='1607' y='13289'>
+                  <formatted-text>
+                    <run bold='true' fontcolor='#ffffff' fontsize='16'>Click on a team to see the realtionship between their Earned Run average and number of wins in a season.</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                    <format attr='background-color' value='#555555a0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='57368' id='36' is-fixed='true' name='Baseball Stadium Locations' show-title='false' w='96607' x='1518' y='22237'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='209' h='27500' id='38' is-fixed='true' name='ERA vs Wins' show-title='false' w='96429' x='1786' y='70395'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='4474' id='39' leg-item-layout='horz' name='ERA vs Wins' pane-specification-id='1' param='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]' show-title='false' type-v2='color' w='22411' x='8571' y='89868'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{8D033FD1-BA1A-4552-B670-88F6A425C90E}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='worksheet' name='Baseball Stadium Locations'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{9B575EAF-27D9-4C8A-9DA2-8B426D8D63C0}' />
+    </window>
+    <window class='worksheet' name='Sheet 6'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{02CB4D9F-7F65-4B4F-B163-8F99315A6C75}' />
+    </window>
+    <window class='worksheet' name='Attendance vs wins'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]' type='highlighter' />
+            <card pane-specification-id='1' param='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{C3108842-4E0A-42EB-A84E-1EEF1A7B401C}' />
+    </window>
+    <window class='worksheet' name='ERA vs Wins'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:name:nk]' type='highlighter' />
+            <card pane-specification-id='1' param='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{9895EAD1-1C0A-44CB-857E-5CD6DF906B07}' />
+    </window>
+    <window class='worksheet' name='Attendance label'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{353B022D-2CCE-4CA7-9093-F31610B39F2F}' />
+    </window>
+    <window class='worksheet' name='ERA Label'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{0F79E3D8-93F5-4F5D-9BEA-3DB01728D529}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Baseball Dashboard'>
+      <viewpoints>
+        <viewpoint name='Baseball Stadium Locations'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='ERA vs Wins'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='56' />
+      <simple-id uuid='{80331274-4B66-4438-85C6-A5E02816C5FB}' />
+    </window>
+  </windows>
+  <external>
+    <shapes>
+      <shape name='Custom Shapes/baseball stadium.png'>
+        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
+      </shape>
+    </shapes>
+  </external>
+  <referenced-extensions>
+    <referenced-extension>
+      <manifest manifest-version='0.1'>
+        <dashboard-extension extension-version='1.0.0' id='com.yourcompany.data-chat'>
+          <default-locale>en_US</default-locale>
+          <name resource-id='name' />
+          <description>AI-powered chat interface to query your Excel data using Claude, directly inside Tableau.</description>
+          <author email='you@yourcompany.com' name='Your Name' organization='Your Company' website='https://yourcompany.com' />
+          <min-api-version>1.7</min-api-version>
+          <source-location>
+            <url>http://localhost:8765/index.html</url>
+          </source-location>
+          <icon>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA</icon>
+          <permissions>
+            <permission>full data</permission>
+          </permissions>
+        </dashboard-extension>
+        <resources>
+          <resource id='name'>
+            <text locale='en_US'>Data Chat — Claude AI</text>
+          </resource>
+        </resources>
+      </manifest>
+      <referenced-views>
+        <referenced-view instances='1' viewId='Baseball Dashboard' />
+      </referenced-views>
+    </referenced-extension>
+  </referenced-extensions>
+</workbook>
