@@ -1,46 +1,66 @@
 import sys
 import os
 
-# Ensure src/ is on the path regardless of where app.py is run from
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(BASE_DIR, "src"))
 
-from flask import Flask, request, jsonify, render_template, session
+from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 
-from groq_client     import GroqClient
-from file_handler    import FileHandler
-from tableau_bridge  import TableauBridge
+from groq_client      import GroqClient
+from file_handler     import FileHandler
+from tableau_bridge   import TableauBridge
+from context_manager  import ContextManager
 
 load_dotenv()
 
-app     = Flask(__name__)
+app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET", "dev-secret-change-me")
 
-# ── Per-process singletons ────────────────────────────────────────────────────
+# Singletons
 groq    = GroqClient()
 files   = FileHandler()
-
-# ── Simple in-memory session store (single-user local dev) ───────────────────
 _bridge = TableauBridge()
+context = ContextManager()
+
+# Load role config — try Excel file first, fall back to defaults
+CONFIG_PATH = os.path.join(BASE_DIR, "context_config.xlsx")
+if os.path.exists(CONFIG_PATH):
+    context.load_from_excel(CONFIG_PATH)
+else:
+    context.load_defaults()
 
 
-# ── Routes ────────────────────────────────────────────────────────────────────
 @app.route("/")
 @app.route("/index.html")
 def index():
     return render_template("index.html")
 
 
+@app.route("/api/roles", methods=["GET"])
+def get_roles():
+    return jsonify({
+        "roles":       context.get_roles_list(),
+        "active_role": context.active_role
+    })
+
+
+@app.route("/api/roles/set", methods=["POST"])
+def set_role():
+    body    = request.get_json(silent=True) or {}
+    role_id = (body.get("role_id") or "").strip().lower()
+    if not role_id:
+        return jsonify({"error": "role_id is required"}), 400
+    context.set_role(role_id)
+    return jsonify({"ok": True, "active_role": context.active_role, "role": context.get_role()})
+
+
 @app.route("/api/upload", methods=["POST"])
 def upload():
-    """Receive an Excel/CSV file, parse it, store context in session."""
     if "file" not in request.files:
         return jsonify({"error": "No file provided"}), 400
-
     f        = request.files["file"]
     filename = f.filename or "upload"
-
     try:
         parsed = files.parse(f.read(), filename)
         _bridge.load_data(parsed)
@@ -51,39 +71,33 @@ def upload():
 
 @app.route("/api/chat", methods=["POST"])
 def chat():
-    """Receive a user message, call Groq, return the assistant reply."""
     if not _bridge.data_ready:
         return jsonify({"error": "No data loaded yet"}), 400
-
     body    = request.get_json(silent=True) or {}
     message = (body.get("message") or "").strip()
     if not message:
         return jsonify({"error": "Empty message"}), 400
-
     _bridge.add_message("user", message)
-
+    role_context = context.build_role_context()
     try:
-        reply = groq.chat(_bridge.history, _bridge.data_context)
+        reply = groq.chat(_bridge.history, _bridge.data_context, role_context)
         _bridge.add_message("assistant", reply)
-        return jsonify({"reply": reply})
+        return jsonify({"reply": reply, "active_role": context.active_role})
     except Exception as e:
-        # Roll back the user message on failure
         _bridge.history.pop()
         return jsonify({"error": str(e)}), 500
 
 
 @app.route("/api/reset", methods=["POST"])
 def reset():
-    """Clear loaded data and conversation history."""
     _bridge.reset()
     return jsonify({"ok": True})
 
 
 @app.route("/api/status", methods=["GET"])
 def status():
-    return jsonify(_bridge.summary())
+    return jsonify({**_bridge.summary(), "active_role": context.active_role})
 
 
-# ── Run ───────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8765, debug=True)

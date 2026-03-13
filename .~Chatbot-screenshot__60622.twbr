@@ -763,7 +763,7 @@
         <calculation class='tableau' formula='[W] / ([L] + [W])' />
       </column>
       <column caption='Div Win' datatype='string' name='[DivWin]' role='dimension' type='nominal' />
-      <column datatype='real' name='[ERA]' role='measure' type='quantitative' />
+      <column datatype='real' default-format='n#,##0.00;-#,##0.00' name='[ERA]' role='measure' type='quantitative' />
       <column datatype='string' name='[F49]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
       <column datatype='string' name='[F50]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
       <column caption='I Pouts' datatype='integer' name='[IPouts]' role='measure' type='quantitative' />
@@ -783,6 +783,7 @@
       <column caption='Team ID' datatype='string' name='[teamID]' role='dimension' type='nominal' />
       <column caption='Team I Dretro' datatype='string' name='[teamIDretro]' role='dimension' type='nominal' />
       <column caption='Year ID' datatype='integer' default-format='*YYYY' name='[yearID]' role='dimension' type='ordinal' />
+      <column-instance column='[attendance]' derivation='Avg' name='[avg:attendance:qk]' pivot='key' type='quantitative' />
       <column-instance column='[ERA]' derivation='Sum' name='[sum:ERA:qk]' pivot='key' type='quantitative' />
       <column-instance column='[W]' derivation='Sum' name='[sum:W:qk]' pivot='key' type='quantitative' />
       <column-instance column='[attendance]' derivation='Sum' name='[sum:attendance:qk]' pivot='key' type='quantitative' />
@@ -815,7 +816,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>12</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>lgID</remote-name>
@@ -830,7 +830,6 @@
               <approx-count>2</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>teamID</remote-name>
@@ -845,7 +844,6 @@
               <approx-count>31</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>franchID</remote-name>
@@ -860,7 +858,6 @@
               <approx-count>30</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>divID</remote-name>
@@ -875,7 +872,6 @@
               <approx-count>3</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>Rank</remote-name>
@@ -889,7 +885,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>6</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>G</remote-name>
@@ -903,7 +898,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>5</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>Ghome</remote-name>
@@ -917,7 +911,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>14</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>W</remote-name>
@@ -931,7 +924,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>75</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>L</remote-name>
@@ -945,7 +937,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>74</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>DivWin</remote-name>
@@ -960,7 +951,6 @@
               <approx-count>2</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>WCWin</remote-name>
@@ -975,7 +965,6 @@
               <approx-count>2</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>LgWin</remote-name>
@@ -990,7 +979,6 @@
               <approx-count>2</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>WSWin</remote-name>
@@ -1005,7 +993,6 @@
               <approx-count>2</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>R</remote-name>
@@ -1019,7 +1006,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>224</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>AB</remote-name>
@@ -1033,7 +1019,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>242</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>H</remote-name>
@@ -1047,7 +1032,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>232</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>2B</remote-name>
@@ -1061,7 +1045,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>132</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>3B</remote-name>
@@ -1075,7 +1058,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>51</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>HR</remote-name>
@@ -1089,7 +1071,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>162</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>BB</remote-name>
@@ -1103,7 +1084,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>204</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>SO</remote-name>
@@ -1117,7 +1097,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>270</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>SB</remote-name>
@@ -1131,7 +1110,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>125</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>CS</remote-name>
@@ -1145,7 +1123,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>56</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>HBP</remote-name>
@@ -1159,7 +1136,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>80</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>SF</remote-name>
@@ -1173,7 +1149,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>54</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>RA</remote-name>
@@ -1187,7 +1162,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>227</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>ER</remote-name>
@@ -1201,7 +1175,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>219</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>ERA</remote-name>
@@ -1215,7 +1188,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>180</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>CG</remote-name>
@@ -1229,7 +1201,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>16</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>SHO</remote-name>
@@ -1243,7 +1214,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>24</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>SV</remote-name>
@@ -1257,7 +1227,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>52</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>IPouts</remote-name>
@@ -1271,7 +1240,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>171</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>HA</remote-name>
@@ -1285,7 +1253,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>237</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>HRA</remote-name>
@@ -1299,7 +1266,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>141</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>BBA</remote-name>
@@ -1313,7 +1279,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>195</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>SOA</remote-name>
@@ -1327,7 +1292,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>274</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>E</remote-name>
@@ -1341,7 +1305,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>88</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>DP</remote-name>
@@ -1355,7 +1318,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>99</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>FP</remote-name>
@@ -1369,7 +1331,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>15</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>name</remote-name>
@@ -1384,7 +1345,6 @@
               <approx-count>31</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>park</remote-name>
@@ -1399,7 +1359,6 @@
               <approx-count>33</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>attendance</remote-name>
@@ -1413,7 +1372,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>331</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>BPF</remote-name>
@@ -1427,7 +1385,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>32</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>PPF</remote-name>
@@ -1441,7 +1398,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>31</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>teamIDBR</remote-name>
@@ -1456,7 +1412,6 @@
               <approx-count>31</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>teamIDlahman45</remote-name>
@@ -1471,7 +1426,6 @@
               <approx-count>30</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>teamIDretro</remote-name>
@@ -1486,7 +1440,6 @@
               <approx-count>31</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>F49</remote-name>
@@ -1501,7 +1454,6 @@
               <approx-count>28</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>F50</remote-name>
@@ -1516,7 +1468,6 @@
               <approx-count>19</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <object-id>[Sheet 1-Teams.csv_FEB6525AD8634AE4B7508782636CC07B]</object-id>
             </metadata-record>
           </metadata-records>
         </connection>
@@ -1563,6 +1514,9 @@
             </map>
           </encoding>
           <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[avg:attendance:qk]&quot;</bucket>
+            </map>
             <map to='#4e79a7'>
               <bucket>&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:attendance:qk]&quot;</bucket>
             </map>
@@ -1958,7 +1912,7 @@
             <column caption='Date' datatype='date' name='[Calculation_6272740273713610752]' role='dimension' type='quantitative'>
               <calculation class='tableau' formula='DATE(&apos;01-01-&apos;+str([yearID]))' />
             </column>
-            <column datatype='real' name='[ERA]' role='measure' type='quantitative' />
+            <column datatype='real' default-format='n#,##0.00;-#,##0.00' name='[ERA]' role='measure' type='quantitative' />
             <column caption='Wins' datatype='integer' name='[W]' role='measure' type='quantitative' />
             <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
             <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
@@ -2041,16 +1995,21 @@
             <column caption='WIn %' datatype='real' default-format='n#,##0.0000;-#,##0.0000' name='[Calculation_6272740273719664642]' role='measure' type='quantitative'>
               <calculation class='tableau' formula='[W] / ([L] + [W])' />
             </column>
-            <column datatype='string' name='[F49]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
-            <column datatype='string' name='[F50]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column datatype='real' default-format='n#,##0.00;-#,##0.00' name='[ERA]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[HR]' role='measure' type='quantitative' />
             <column caption='Losses' datatype='integer' name='[L]' role='measure' type='quantitative' />
             <column caption='Wins' datatype='integer' name='[W]' role='measure' type='quantitative' />
             <column caption='Attendance' datatype='integer' name='[attendance]' role='measure' type='quantitative' />
             <column-instance column='[Calculation_6272740273719664642]' derivation='Avg' name='[avg:Calculation_6272740273719664642:qk]' pivot='key' type='quantitative' />
-            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column caption='Lg ID' datatype='string' name='[lgID]' role='dimension' type='nominal' />
+            <column-instance column='[lgID]' derivation='None' name='[none:lgID:nk]' pivot='key' type='nominal' />
+            <column-instance column='[teamID]' derivation='None' name='[none:teamID:nk]' pivot='key' type='nominal' />
+            <column-instance column='[ERA]' derivation='Sum' name='[sum:ERA:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[HR]' derivation='Sum' name='[sum:HR:qk]' pivot='key' type='quantitative' />
             <column-instance column='[L]' derivation='Sum' name='[sum:L:qk]' pivot='key' type='quantitative' />
             <column-instance column='[W]' derivation='Sum' name='[sum:W:qk]' pivot='key' type='quantitative' />
             <column-instance column='[attendance]' derivation='Sum' name='[sum:attendance:qk]' pivot='key' type='quantitative' />
+            <column caption='Team ID' datatype='string' name='[teamID]' role='dimension' type='nominal' />
             <column-instance column='[Calculation_6272740273713610752]' derivation='Year-Trunc' name='[tyr:Calculation_6272740273713610752:ok]' pivot='key' type='ordinal' />
             <column caption='Year ID' datatype='integer' default-format='*YYYY' name='[yearID]' role='dimension' type='ordinal' />
           </datasource-dependencies>
@@ -2060,6 +2019,8 @@
               <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:L:qk]&quot;' />
               <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:attendance:qk]&quot;' />
               <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[avg:Calculation_6272740273719664642:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:HR:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:ERA:qk]&quot;' />
             </groupfilter>
           </filter>
           <manual-sort column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]' direction='ASC'>
@@ -2067,22 +2028,28 @@
               <bucket>&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:W:qk]&quot;</bucket>
               <bucket>&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:L:qk]&quot;</bucket>
               <bucket>&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:attendance:qk]&quot;</bucket>
+              <bucket>&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[avg:Calculation_6272740273719664642:qk]&quot;</bucket>
+              <bucket>&quot;[federated.1arnmq915ejzoh1e4qgbv1gg362s].[sum:HR:qk]&quot;</bucket>
             </dictionary>
           </manual-sort>
-          <filter class='categorical' column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[Tooltip (F49,F50,Name)]'>
-            <groupfilter function='crossjoin' user:ui-action-filter='[Action - Sheet 6]' user:ui-enumeration='all' user:ui-marker='enumerate'>
-              <groupfilter function='level-members' level='[F49]' />
-              <groupfilter function='level-members' level='[F50]' />
-              <groupfilter function='level-members' level='[name]' />
-            </groupfilter>
+          <filter class='categorical' column='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:lgID:nk]'>
+            <groupfilter function='member' level='[none:lgID:nk]' member='&quot;AL&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
           <slices>
             <column>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]</column>
-            <column>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[Tooltip (F49,F50,Name)]</column>
+            <column>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:lgID:nk]</column>
           </slices>
           <aggregation value='true' />
         </view>
-        <style />
+        <style>
+          <style-rule element='cell'>
+            <format attr='text-align' value='center' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-align' value='center' />
+            <format attr='vertical-align' value='center' />
+          </style-rule>
+        </style>
         <panes>
           <pane selection-relaxation-option='selection-relaxation-allow'>
             <view>
@@ -2099,7 +2066,7 @@
             </style>
           </pane>
         </panes>
-        <rows>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[tyr:Calculation_6272740273713610752:ok]</rows>
+        <rows>([federated.1arnmq915ejzoh1e4qgbv1gg362s].[none:teamID:nk] / [federated.1arnmq915ejzoh1e4qgbv1gg362s].[tyr:Calculation_6272740273713610752:ok])</rows>
         <cols>[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]</cols>
       </table>
       <simple-id uuid='{2A934E03-43B0-4655-8D82-44383638E1E5}' />
@@ -2143,7 +2110,7 @@
         </zone>
         <zone h='27500' id='38' name='ERA vs Wins' show-title='false' w='96429' x='1786' y='70395' />
         <zone h='4474' id='39' leg-item-layout='horz' name='ERA vs Wins' pane-specification-id='1' param='[federated.1arnmq915ejzoh1e4qgbv1gg362s].[:Measure Names]' show-title='false' type-v2='color' w='22411' x='8571' y='89868' />
-        <zone forceUpdate='true' h='9868' id='56' param='[com.yourcompany.data-chat].[1.0.0].[http://localhost:8765/index.html]' type-v2='dashboard-object' w='33304' x='47946' y='3289'>
+        <zone forceUpdate='true' h='64474' id='56' param='[com.yourcompany.data-chat].[1.0.0].[http://localhost:8765/index.html]' type-v2='dashboard-object' w='33304' x='65446' y='3816'>
           <add-in add-in-id='com.yourcompany.data-chat' extension-url='http://localhost:8765/index.html' extension-version='1.0.0' instance-id='FEE82F6A428E459A8A5D44B76F21C84F'>
             <instance-settings />
             <type-settings>
@@ -2226,6 +2193,75 @@
         </devicelayout>
       </devicelayouts>
       <simple-id uuid='{8D033FD1-BA1A-4552-B670-88F6A425C90E}' />
+    </dashboard>
+    <dashboard enable-sort-zone-taborder='true' name='Baseball Stats'>
+      <style />
+      <size maxheight='860' maxwidth='650' minheight='560' minwidth='420' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='8023' id='3' param='horz' type-v2='layout-flow' w='48769' x='1231' y='1146'>
+            <zone forceUpdate='true' h='8023' id='5' type-v2='text' w='48769' x='1231' y='1146'>
+              <formatted-text>
+                <run bold='true' fontalignment='1' fontcolor='#742718' fontsize='20'>Baseball By The Numbers</run>
+              </formatted-text>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='background-color' value='#55abff' />
+            </zone-style>
+          </zone>
+          <zone h='89685' id='6' param='horz' type-v2='layout-flow' w='97538' x='1231' y='9169'>
+            <zone h='89685' id='7' name='Sheet 6' show-title='false' w='97538' x='1231' y='9169'>
+              <layout-cache fixed-size-w='658' type-h='fixed' type-w='fixed' />
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+          </zone>
+          <zone forceUpdate='true' h='8023' id='8' is-scaled='1' param='Image/blackout the xavier corner.jpeg' type-v2='bitmap' w='48769' x='50000' y='1146'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='2' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='84000' id='1' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000' />
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{9F6CAAB5-5B75-4E66-A7DE-774DBA7B4D63}' />
     </dashboard>
   </dashboards>
   <windows source-height='30'>
@@ -2380,7 +2416,7 @@
       </cards>
       <simple-id uuid='{0F79E3D8-93F5-4F5D-9BEA-3DB01728D529}' />
     </window>
-    <window class='dashboard' maximized='true' name='Baseball Dashboard'>
+    <window class='dashboard' name='Baseball Dashboard'>
       <viewpoints>
         <viewpoint name='Baseball Stadium Locations'>
           <zoom type='entire-view' />
@@ -2389,8 +2425,15 @@
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='56' />
+      <active id='-1' />
       <simple-id uuid='{80331274-4B66-4438-85C6-A5E02816C5FB}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Baseball Stats'>
+      <viewpoints>
+        <viewpoint name='Sheet 6' />
+      </viewpoints>
+      <active id='8' />
+      <simple-id uuid='{ABC85BCF-2721-4562-8C97-8AF9083882E4}' />
     </window>
   </windows>
   <external>

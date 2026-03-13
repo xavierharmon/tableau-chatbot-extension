@@ -8,19 +8,35 @@ class GroqClient:
         self.model   = "llama-3.3-70b-versatile"
         self.url     = "https://api.groq.com/openai/v1/chat/completions"
 
-    def build_system_prompt(self, data_context: str) -> str:
-        return (
-            "You are a data analyst assistant embedded in a Tableau dashboard.\n"
-            "You have been given a dataset to analyze. Answer questions clearly and concisely.\n"
-            "When showing data, use markdown tables where helpful.\n"
-            "Be specific with numbers — cite actual values from the data.\n"
-            "If asked something the data cannot answer, say so clearly.\n\n"
-            f"Here is the dataset you are working with:\n\n{data_context}"
-        )
+    def build_system_prompt(self, data_context: str, role_context: str = "") -> str:
+        parts = [
+            "You are a data analyst assistant embedded in a Tableau dashboard.",
+            "You have been given a dataset to analyze.",
+            "When showing data, use markdown tables where helpful.",
+            "Be specific with numbers — cite actual values from the data.",
+            "If asked something the data cannot answer, say so clearly.",
+        ]
 
-    def chat(self, history: list, data_context: str) -> str:
+        if role_context:
+            parts += [
+                "",
+                role_context,
+                "",
+                "Always tailor your response style, tone, and level of detail to match the role context above.",
+            ]
+
+        parts += [
+            "",
+            "Here is the dataset you are working with:",
+            "",
+            data_context
+        ]
+
+        return "\n".join(parts)
+
+    def chat(self, history: list, data_context: str, role_context: str = "") -> str:
         messages = [
-            {"role": "system", "content": self.build_system_prompt(data_context)},
+            {"role": "system", "content": self.build_system_prompt(data_context, role_context)},
             *[{"role": m["role"], "content": m["content"]} for m in history]
         ]
 

@@ -7,7 +7,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
-<!-- Tableau Extensions API -->
+<style>
+  /* ── Role selector ── */
+  .role-select-wrap { position: relative; }
+  .role-select-wrap select {
+    width: 100%; background: white; border: 1px solid var(--rule); border-radius: var(--radius);
+    color: var(--ink); font-family: var(--mono); font-size: 11px; padding: 7px 11px;
+    outline: none; appearance: none; cursor: pointer;
+    transition: border-color 0.15s; box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .role-select-wrap select:focus { border-color: var(--amber); }
+  .role-select-wrap::after {
+    content: '▾'; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    color: var(--muted); pointer-events: none; font-size: 11px;
+  }
+  .role-badge {
+    font-family: var(--mono); font-size: 9px; padding: 2px 8px; border-radius: 20px;
+    border: 1px solid var(--amber); color: var(--amber); margin-left: 8px;
+    display: none; vertical-align: middle;
+  }
+  .role-badge.visible { display: inline; }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/@tableau/extensions-api@1.12.0/dist/tableau.extensions.1.latest.min.js"></script>
 </head>
 <body>
@@ -21,9 +41,12 @@
         <div class="header-sub">Tableau Extension · Groq AI</div>
       </div>
     </div>
-    <div class="data-pill" id="data-pill">
-      <div class="data-pill-dot"></div>
-      <span class="data-pill-name" id="data-pill-name">No data loaded</span>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span class="role-badge" id="role-badge"></span>
+      <div class="data-pill" id="data-pill">
+        <div class="data-pill-dot"></div>
+        <span class="data-pill-name" id="data-pill-name">No data loaded</span>
+      </div>
     </div>
   </header>
 
@@ -31,6 +54,14 @@
   <div id="setup-panel">
     <div class="setup-grid">
       <div class="setup-grid-inner">
+        <div>
+          <label>Your Role</label>
+          <div class="role-select-wrap">
+            <select id="role-select">
+              <option value="">Loading roles…</option>
+            </select>
+          </div>
+        </div>
         <div>
           <label>Excel / CSV File</label>
           <div class="drop-zone" id="drop-zone">
@@ -61,7 +92,7 @@
     <div id="welcome">
       <div class="welcome-icon">◈</div>
       <div class="welcome-title">Ask your data anything</div>
-      <div class="welcome-sub">Upload your Excel file above, then start chatting with your data using natural language.</div>
+      <div class="welcome-sub">Select your role and upload your file above, then start chatting with your data.</div>
       <div class="suggestion-chips" id="suggestion-chips" style="display:none">
         <button class="chip-btn" onclick="sendSuggestion(this)">Summarize the overall dataset for me</button>
         <button class="chip-btn" onclick="sendSuggestion(this)">What are the top 5 rows by the highest numeric value?</button>
@@ -73,25 +104,39 @@
 
   <!-- Input Bar -->
   <div id="input-bar">
-    <textarea id="msg-input" placeholder="Load your data above to start chatting…" rows="1" disabled></textarea>
+    <textarea id="msg-input" placeholder="Select your role and load data above to start chatting…" rows="1" disabled></textarea>
     <button id="send-btn" disabled title="Send">➤</button>
   </div>
 
 </div>
-
 <div id="toast"></div>
 
 <script>
-// ── State ─────────────────────────────────────────────────────────────────────
-const state = {
-  dataReady: false,
-  thinking:  false
-};
+const state = { dataReady: false, thinking: false };
 
-// ── Tableau Init (graceful fallback) ──────────────────────────────────────────
-try {
-  tableau.extensions.initializeAsync().catch(() => {});
-} catch(e) {}
+try { tableau.extensions.initializeAsync().catch(() => {}); } catch(e) {}
+
+// ── Load roles from backend ───────────────────────────────────────────────────
+async function loadRoles() {
+  try {
+    const res   = await fetch('/api/roles');
+    const data  = await res.json();
+    const sel   = document.getElementById('role-select');
+    sel.innerHTML = '';
+    data.roles.forEach(r => {
+      const opt   = document.createElement('option');
+      opt.value   = r.id;
+      opt.text    = r.display_name;
+      if (r.id === data.active_role) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    checkApplyReady();
+  } catch(e) {
+    showToast('Could not load roles. Is the server running?');
+  }
+}
+
+document.getElementById('role-select').addEventListener('change', checkApplyReady);
 
 // ── File Upload ───────────────────────────────────────────────────────────────
 const dropZone  = document.getElementById('drop-zone');
@@ -113,38 +158,54 @@ function stageFile(file) {
   dropZone.classList.add('loaded');
   dropLabel.className   = 'drop-label loaded';
   dropLabel.textContent = `✓ ${file.name}`;
-  applyBtn.disabled     = false;
+  checkApplyReady();
 }
 
-// ── Apply — upload file to Flask backend ──────────────────────────────────────
-applyBtn.addEventListener('click', async () => {
-  if (!stagedFile) return;
-  applyBtn.disabled     = true;
-  applyBtn.textContent  = 'Uploading…';
+function checkApplyReady() {
+  const roleSelected = document.getElementById('role-select').value;
+  applyBtn.disabled  = !(stagedFile && roleSelected);
+}
 
-  const form = new FormData();
-  form.append('file', stagedFile);
+// ── Apply ─────────────────────────────────────────────────────────────────────
+applyBtn.addEventListener('click', async () => {
+  const roleId = document.getElementById('role-select').value;
+  applyBtn.disabled    = true;
+  applyBtn.textContent = 'Applying…';
 
   try {
+    // 1. Set role
+    await fetch('/api/roles/set', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ role_id: roleId })
+    });
+
+    // 2. Upload file
+    const form = new FormData();
+    form.append('file', stagedFile);
     const res  = await fetch('/api/upload', { method: 'POST', body: form });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Upload failed');
 
     const s = data.summary;
-    document.getElementById('data-summary').style.display = 'block';
-    document.getElementById('stat-rows').textContent      = s.row_count.toLocaleString();
-    document.getElementById('stat-cols').textContent      = s.columns.length;
-    document.getElementById('stat-sheet').textContent     = s.sheet_name;
-    document.getElementById('stat-col-names').textContent = s.columns.join(', ');
+    document.getElementById('data-summary').style.display  = 'block';
+    document.getElementById('stat-rows').textContent       = s.row_count.toLocaleString();
+    document.getElementById('stat-cols').textContent       = s.columns.length;
+    document.getElementById('stat-sheet').textContent      = s.sheet_name;
+    document.getElementById('stat-col-names').textContent  = s.columns.join(', ');
 
-    const pill = document.getElementById('data-pill');
-    pill.classList.add('loaded');
+    document.getElementById('data-pill').classList.add('loaded');
     document.getElementById('data-pill-name').textContent = s.file_name;
 
-    document.getElementById('setup-panel').style.display = 'none';
-    document.getElementById('msg-input').disabled        = false;
-    document.getElementById('msg-input').placeholder     = 'Ask a question about your data…';
-    document.getElementById('send-btn').disabled         = false;
+    // Show role badge in header
+    const badge = document.getElementById('role-badge');
+    badge.textContent = document.getElementById('role-select').selectedOptions[0].text;
+    badge.classList.add('visible');
+
+    document.getElementById('setup-panel').style.display  = 'none';
+    document.getElementById('msg-input').disabled         = false;
+    document.getElementById('msg-input').placeholder      = 'Ask a question about your data…';
+    document.getElementById('send-btn').disabled          = false;
     document.getElementById('suggestion-chips').style.display = 'flex';
     state.dataReady = true;
 
@@ -204,7 +265,6 @@ async function sendMessage() {
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Chat error');
-
     thinkingEl.remove();
     appendMessage('assistant', data.reply);
   } catch(err) {
@@ -220,24 +280,19 @@ async function sendMessage() {
 
 // ── Render ────────────────────────────────────────────────────────────────────
 function appendMessage(role, text) {
-  const div = document.createElement('div');
-  div.className = `msg ${role}`;
-
+  const div          = document.createElement('div');
+  div.className      = `msg ${role}`;
   const avatar       = document.createElement('div');
   avatar.className   = 'msg-avatar';
   avatar.textContent = role === 'user' ? 'Y' : '◈';
-
-  const body     = document.createElement('div');
-  body.className = 'msg-body';
-
+  const body         = document.createElement('div');
+  body.className     = 'msg-body';
   const roleLabel       = document.createElement('div');
   roleLabel.className   = 'msg-role';
   roleLabel.textContent = role === 'user' ? 'You' : 'Groq';
-
-  const bubble     = document.createElement('div');
-  bubble.className = 'msg-text';
-  bubble.innerHTML = renderMarkdown(text);
-
+  const bubble      = document.createElement('div');
+  bubble.className  = 'msg-text';
+  bubble.innerHTML  = renderMarkdown(text);
   body.appendChild(roleLabel);
   body.appendChild(bubble);
   div.appendChild(avatar);
@@ -286,6 +341,9 @@ function showToast(msg) {
   t.style.display = 'block';
   setTimeout(() => t.style.display = 'none', 4000);
 }
+
+// Boot
+loadRoles();
 </script>
 </body>
 </html>
