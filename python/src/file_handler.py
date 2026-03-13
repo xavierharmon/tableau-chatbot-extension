@@ -60,7 +60,7 @@ class FileHandler:
                 )
 
         # Sample rows
-        sample_df  = df.head(20) if total_rows > 30 else df
+        sample_df  = df.head(60) if total_rows > 70 else df
         header_row = " | ".join(self.sanitize(c) for c in columns)
         data_rows  = "\n".join(
             " | ".join(self.sanitize(str(row[c]))[:40] for c in columns)
