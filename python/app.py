@@ -17,20 +17,31 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET", "dev-secret-change-me")
 
-# Singletons
+# ── Singletons ────────────────────────────────────────────────────────────────
 groq    = GroqClient()
 files   = FileHandler()
 _bridge = TableauBridge()
 context = ContextManager()
 
-# Load role config — try Excel file first, fall back to defaults
+# Load role config
 CONFIG_PATH = os.path.join(BASE_DIR, "context_config.xlsx")
 if os.path.exists(CONFIG_PATH):
     context.load_from_excel(CONFIG_PATH)
 else:
     context.load_defaults()
 
+# Load field context markdown (optional — silently skipped if not present)
+FIELD_CONTEXT_PATH = os.path.join(BASE_DIR, "data_context.md")
+field_context = ""
+if os.path.exists(FIELD_CONTEXT_PATH):
+    with open(FIELD_CONTEXT_PATH, "r") as f:
+        field_context = f.read()
+    print(f"✓ Loaded field context from data_context.md")
+else:
+    print("ℹ No data_context.md found — field context disabled")
 
+
+# ── Routes ────────────────────────────────────────────────────────────────────
 @app.route("/")
 @app.route("/index.html")
 def index():
@@ -62,7 +73,7 @@ def upload():
     f        = request.files["file"]
     filename = f.filename or "upload"
     try:
-        parsed = files.parse(f.read(), filename)
+        parsed = files.parse(f.read(), filename, field_context)
         _bridge.load_data(parsed)
         return jsonify({"ok": True, "summary": _bridge.summary()})
     except Exception as e:
